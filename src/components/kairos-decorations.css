@@ -1,0 +1,71 @@
+/* Portable Lovable-designed decorations; scoped to the authenticated KAIROS dashboard. */
+.app-shell.kairos-sakura-theme .kairos-deco-sakura {
+  --kairos-wood: #743442;
+  position: absolute;
+  inset: 0;
+  overflow: hidden;
+  pointer-events: none;
+  user-select: none;
+  z-index: 0;
+}
+.app-shell.kairos-sakura-theme .kairos-deco-sakura svg {
+  position: absolute;
+  display: block;
+  width: min(76%, 190px);
+  height: auto;
+  pointer-events: none;
+}
+.kairos-deco-sakura__upper { top: 0; right: 0; }
+.kairos-deco-sakura__lower { bottom: 0; left: 0; }
+.kairos-deco-sakura__wood {
+  fill: none;
+  stroke: var(--kairos-wood);
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  opacity: .78;
+}
+.kairos-deco-sakura__flower { fill: #EAA3B5; opacity: .52; }
+.kairos-deco-sakura__detail {
+  fill: none;
+  stroke: #743442;
+  stroke-width: .55;
+  stroke-linecap: round;
+}
+.app-shell.kairos-sakura-theme .sidebar > :not(.kairos-deco-sakura) {
+  position: relative;
+  z-index: 1;
+}
+.app-shell.kairos-sakura-theme .hero-motif .kairos-deco-sun {
+  position: absolute;
+  display: block;
+  top: 22px;
+  right: 17px;
+  width: 156px;
+  height: 156px;
+  color: #9E1628;
+  opacity: 1;
+  pointer-events: none;
+  user-select: none;
+  z-index: 0;
+}
+@media (max-width: 950px) {
+  .app-shell.kairos-sakura-theme .hero-motif .kairos-deco-sun {
+    width: 150px;
+    height: 150px;
+    right: 9px;
+  }
+}
+@media (max-width: 640px) {
+  .kairos-deco-sakura__lower { display: none !important; }
+  /* On mobile the sidebar is a horizontal header; keep blossoms minimal. */
+  .app-shell.kairos-sakura-theme .kairos-deco-sakura__upper {
+    width: 95px;
+    opacity: .38;
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  .kairos-deco-sakura, .kairos-deco-sakura *, .kairos-deco-sun {
+    animation: none !important;
+    transition: none !important;
+  }
+}

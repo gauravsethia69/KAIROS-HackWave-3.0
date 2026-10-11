@@ -1,219 +1,677 @@
 /* Authenticated workspace only. Keep landing, login and gate styles independent. */
+
 .app-shell.kairos-sakura-theme {
+
   --paper: #F8F4EE; --card: #FFFCF8; --ink: #172033; --muted: #617084;
+
   --red: #9E1628; --hover: #811120; --sakura: #EAA3B5; --border: #E4DAD1;
+
   background: var(--paper); color: var(--ink); color-scheme: light; font-size: 15px;
+
 }
+
 .kairos-sakura-theme .sidebar { width: 248px; padding: 30px 18px 20px; background: #131E2B; color: #fffaf3; border-color: #2f3a48; overflow-y: auto; }
+
 .kairos-sakura-theme .app-body { margin-left: 248px; }
+
 .kairos-sakura-theme .brand { font-family: Georgia, 'Yu Mincho', serif; font-size: 29px; letter-spacing: 3px; margin-bottom: 38px; }
+
 .kairos-sakura-theme .brand small { color: #c4cbd4; font: 12px 'Segoe UI', sans-serif; letter-spacing: 5px; margin-top: 7px; }
+
 .kairos-sakura-theme .workspace-label { color: #bdc8d6; font-size: 11px; letter-spacing: 3px; }
+
 .kairos-sakura-theme .workspace-label span { color: #bdc8d6; }
+
 .kairos-sakura-theme .nav-item { font-size: 15px; color: #e6eaf0; padding: 13px 12px; min-height: 48px; }
+
 .kairos-sakura-theme .nav-item.active { background: #9e162838; border-color: #ba4254; color: #fff9f1; }
+
 .kairos-sakura-theme .nav-item.active:after { background: #ed4258; width: 7px; height: 7px; }
+
 .kairos-sakura-theme .nav-item:hover { background: #293341; }
+
 .kairos-sakura-theme .kai-card { border-color: #586272; padding: 25px 12px; background: repeating-radial-gradient(ellipse at 0 100%, transparent 0 14px, #d7b78b0c 15px 16px, transparent 17px 27px), #1a2634; }
+
 .kairos-sakura-theme .kai-card .kai svg { width: 100px; height: 94px; }
+
 .kairos-sakura-theme .kai-card p { font: 600 21px/1.25 Georgia, serif; }
+
 .kairos-sakura-theme .kai-card>span { color: #c0ccda; font-size: 13px; }
+
 .kairos-sakura-theme .event-label { font-size: 10px; color: #c0ccda; }
+
 .kairos-sakura-theme .profile-button { font-size: 14px; min-height: 50px; }
+
 .kairos-sakura-theme .profile-button small { font-size: 12px; }
+
 .kairos-sakura-theme .topbar { min-height: 78px; height: auto; padding: 18px 36px; gap: 16px; border-color: var(--border); }
+
 .kairos-sakura-theme .breadcrumb { font-size: 14px; min-width: 0; }
+
 .kairos-sakura-theme .breadcrumb strong { color: var(--ink); overflow-wrap: anywhere; }
+
 .kairos-sakura-theme .breadcrumb,.kairos-sakura-theme .breadcrumb span { color: var(--muted); }
+
 .kairos-sakura-theme .mode-pill { color: var(--ink); background: var(--card); border-color: var(--border); font-size: 10px; padding: 11px; white-space: nowrap; }
+
 .kairos-sakura-theme .mode-pill>span { background: #16765c; }
+
 .kairos-sakura-theme main { padding: 38px 36px 0; }
+
 .kairos-sakura-theme .page-heading { align-items: center; gap: 24px; min-height: 210px; margin-bottom: 30px; }
+
 .kairos-sakura-theme .page-heading>div:first-child { min-width: 0; }
+
 .kairos-sakura-theme .page-heading h1 { font: 600 clamp(38px,3.6vw,52px)/1.08 Georgia, 'Times New Roman', serif; letter-spacing: -1.8px; color: var(--ink); }
+
 .kairos-sakura-theme .page-heading h1 span { color: var(--ink); }
+
 .kairos-sakura-theme .page-heading p { font-size: 16px; color: var(--muted); max-width: 740px; }
+
 .kairos-sakura-theme .eyebrow { font-size: 11px; color: var(--ink); letter-spacing: 2px; }
+
 .kairos-sakura-theme .red-line { background: var(--red); width: 27px; }
+
 /* One solid sun, a quiet mountain, and edge petals, all outside interaction targets. */
+
 .kairos-sakura-theme .hero-motif { width: 218px; height: 216px; margin: 0; pointer-events: none; }
+
 .kairos-sakura-theme .sun { width: 156px; height: 156px; left: 45px; top: 22px; background: #9E1628; opacity: 1; }
+
 .kairos-sakura-theme .hero-motif:before { border: 0; border-radius: 0; width: 210px; height: 85px; left: 0; top: 128px; z-index: 1; background: #84909a; clip-path: polygon(0 100%, 23% 70%, 49% 0, 72% 71%, 100% 100%); }
+
 .kairos-sakura-theme .hero-motif:after { border: 0; border-radius: 0; width: 74px; height: 37px; left: 66px; top: 128px; z-index: 2; background: var(--paper); clip-path: polygon(50% 0,100% 100%,68% 69%,55% 86%,41% 62%,0 100%); }
+
 .kairos-sakura-theme .motif-lines { width: 13px; height: 22px; left: 16px; top: 24px; border-radius: 85% 0 85% 0; background: var(--sakura); opacity: .65; transform: rotate(25deg); box-shadow: 161px -13px 0 #EAA3B5, 184px 81px 0 #EAA3B5, -4px 82px 0 #EAA3B5; }
+
 .kairos-sakura-theme .hero-motif>span { display: none; }
+
 .kairos-sakura-theme :is(.command-section,.widget,.explanation,.suggestion,.enterprise-evidence,.fw-surface,.saved-panel,.account-panel,.ks-dialog) { background: var(--card); color: var(--ink); border-color: var(--border); box-shadow: 0 4px 18px #36291d07; border-radius: 14px; }
+
 .kairos-sakura-theme .command-top { padding: 22px 24px 0; gap: 14px; color: var(--ink); }
+
 .kairos-sakura-theme .command-top>span:first-child { font: 600 22px Georgia,serif; }
+
 .kairos-sakura-theme .command-top svg { color: var(--red); width: 21px; height: 21px; }
+
 .kairos-sakura-theme .planner-label { color: var(--muted); font-size: 12px; text-align: right; }
+
 .kairos-sakura-theme .command-form { padding: 20px 24px; }
+
 .kairos-sakura-theme .command-form input { font-size: 17px; min-height: 48px; color: var(--ink); }
+
 .kairos-sakura-theme .command-form input::placeholder { color: var(--muted); opacity: 1; }
+
 .kairos-sakura-theme .command-form:focus-within { box-shadow: inset 0 -2px var(--red); }
+
 .kairos-sakura-theme .command-form kbd { color: var(--muted); border-color: var(--border); font-size: 12px; padding: 8px; }
-.kairos-sakura-theme .command-bottom { background: #f7f1e9; border-color: var(--border); padding: 13px 24px; gap: 12px; }
+
+.kairos-sakura-theme .command-bottom { background: #F5C8D7; border-color: #DFA6BA; padding: 13px 24px; gap: 12px; }
+
 .kairos-sakura-theme .command-bottom .kai p { color: var(--ink); font-size: 15px; }
+
 .kairos-sakura-theme .command-bottom .kai .eyebrow { color: var(--red); font-size: 10px; }
+
 .kairos-sakura-theme .command-bottom>span { color: var(--muted); font-size: 12px; }
+
 .kairos-sakura-theme :is(.primary,.ks-primary) { background: var(--red); border-color: var(--red); color: white; font-size: 15px; min-height: 46px; padding: 12px 20px; }
+
 .kairos-sakura-theme button:hover:not(:disabled) { filter: none; }
+
 .kairos-sakura-theme :is(.primary,.ks-primary):hover:not(:disabled) { background: var(--hover); border-color: var(--hover); }
+
 .kairos-sakura-theme :is(button,a,input,select,textarea,summary):focus-visible { outline: 2px solid var(--red); outline-offset: 3px; }
+
 .kairos-sakura-theme .sidebar :is(button,a):focus-visible { outline-color: #ffb3c2; }
+
 .kairos-sakura-theme :is(.secondary,.icon-button,.chip,.chips button,.filter-bar select,.saved-item,.enterprise-sources button,.enterprise-choice-list button,.enterprise-detail-head button,.fw-root select,.fw-root .fw-toolbar button,.fw-week-nav button,.fw-drawer button,.fw-event-inspector button,.fw-root td button,.fw-dependency button,.ks-secondary,.ks-icon) { background: var(--card); color: var(--ink); border-color: var(--border); min-height: 40px; font-size: 14px; }
+
 .kairos-sakura-theme .icon-button { min-width: 42px; min-height: 42px; }
+
 .kairos-sakura-theme .text-button { color: var(--ink); font-size: 14px; min-height: 40px; }
+
 .kairos-sakura-theme .chip.selected { color: var(--red); background: #f8e9ec; border-color: #c58c96; }
+
 .kairos-sakura-theme .suggestion { padding: 22px; }
+
 .kairos-sakura-theme .suggestion h2 { font-size: 18px; max-width: none; }
+
 .kairos-sakura-theme .suggestion p { font-size: 14px; color: var(--muted); }
+
 .kairos-sakura-theme .suggestion .eyebrow { font-size: 10px; color: var(--muted); }
+
 .kairos-sakura-theme .suggestion-icon { color: var(--red); background: #f8e9ec; border-color: #e7c9ce; }
+
 .kairos-sakura-theme .tone-1 { color: #22677a; background: #edf5f5; }
+
 .kairos-sakura-theme .tone-2 { color: #855b25; background: #faf1df; }
+
 .kairos-sakura-theme .workspace-toolbar h2 { font: 600 26px/1.25 Georgia,serif; flex-wrap: wrap; }
+
 .kairos-sakura-theme .workspace-toolbar p { font-size: 14px; color: var(--muted); }
+
 .kairos-sakura-theme .count { color: var(--muted); background: #ede7df; border-color: var(--border); font: 14px 'Segoe UI',sans-serif; padding: 4px 8px; }
+
 .kairos-sakura-theme .workspace-content.with-explanation { grid-template-columns: minmax(0,1fr) 260px; }
+
 .kairos-sakura-theme .workspace-grid { gap: 20px; }
+
 .kairos-sakura-theme .widget { padding: 22px; }
+
 .kairos-sakura-theme :is(.widget-heading h2,.explanation h2) { font-size: 18px; }
+
 .kairos-sakura-theme .widget-number { color: var(--muted); font-size: 12px; }
+
 .kairos-sakura-theme :is(.widget h3,.project h3) { font-size: 17px; }
+
 .kairos-sakura-theme :is(.timeline-item strong,.task strong,.issue-list strong) { font-size: 14px; }
+
 .kairos-sakura-theme :is(.timeline-item p,.task p,.project p,.issue-list summary p,.issue-list details>p,.insights p,.meeting-brief p,.client-heading p,.attendees>span,.explanation li,.explanation details p,.explain-intro,.explanation summary,.empty,.empty>span,dl>div,.filter-bar,.connection-settings,.account-panel>p,.saved-panel>p,.account-panel label) { color: var(--muted); font-size: 14px; }
+
 .kairos-sakura-theme :is(.source,.footnote,.explanation details .source,.explain-footer,.explain-footer small,.filter-help,.connection-settings p,.timeline-item time,.chart-legend,.table-toolbar,.saved-item small) { color: var(--muted); font-size: 12px; }
+
 .kairos-sakura-theme :is(.muted,.expected,dt) { color: var(--muted); }
+
 .kairos-sakura-theme :is(dd,.connection-settings strong) { color: var(--ink); }
+
 .kairos-sakura-theme :is(.task,.project,.timeline-item,.issue-list details,.insights>div,.explanation details,dl>div,.connection-settings,footer,.metric-grid>div+div) { border-color: var(--border); }
+
 .kairos-sakura-theme .explain-divider { background: var(--border); }
+
 .kairos-sakura-theme .explain-icon { background: #edf5f5; color: #22677a; border-color: #bfd8dd; }
+
 .kairos-sakura-theme .explanation li::marker { color: #22677a; font-size: 12px; }
+
 .kairos-sakura-theme .avatar { color: #34465c; background: #e6eaf0; border-color: #c9d1db; }
+
 .kairos-sakura-theme .badge { color: #48576b; background: #edf0f3; border-color: #cdd4dd; font-size: 12px; white-space: normal; }
+
 .kairos-sakura-theme .badge.pink { color: #9e1628; background: #f9e9ed; border-color: #e5b8c2; }
+
 .kairos-sakura-theme .badge.green { color: #206249; background: #e9f3eb; border-color: #b8d7c3; }
+
 .kairos-sakura-theme .badge.blue { color: #22677a; background: #eaf4f6; border-color: #b6d5dd; }
+
 .kairos-sakura-theme .task>.badge { font-size: 11px; }
+
 .kairos-sakura-theme .pink-text { color: var(--red); }
+
 .kairos-sakura-theme .cyan { color: #22677a; }
+
 .kairos-sakura-theme .task-check { color: #617084; min-width: 32px; min-height: 32px; }
+
 .kairos-sakura-theme .task.done .task-check { color: #206249; }
+
 .kairos-sakura-theme .progress-track { background: #e5ddd6; }
+
 .kairos-sakura-theme .progress-track>div { background: var(--red); }
+
 .kairos-sakura-theme .progress-track>span { background: var(--ink); }
+
 .kairos-sakura-theme .metric-grid>div>span { font-size: 11px; color: var(--muted); }
+
 .kairos-sakura-theme .metric-grid p { font-size: 12px; color: var(--muted); }
+
 .kairos-sakura-theme .metric-grid small { font-size: 12px; }
+
 .kairos-sakura-theme :is(th,.fw-root th) { background: #f0eae2; color: var(--muted); }
+
 .kairos-sakura-theme :is(td,th button,.fw-root td) { color: var(--ink); font-size: 14px; border-color: var(--border); }
+
 .kairos-sakura-theme .notice { color: #744714; background: #fff3df; border-color: #dfbc83; font-size: 15px; }
+
 .kairos-sakura-theme .clarification { background: #edf5f5; border-color: #b6d5dd; }
+
 .kairos-sakura-theme .clarification p { color: var(--muted); font-size: 14px; }
+
 .kairos-sakura-theme .skeleton { color: var(--muted); background: linear-gradient(90deg,#f5efe8,#e9e0d6,#f5efe8); background-size: 200% 100%; }
+
 .kairos-sakura-theme :is(.account-panel input,.ks-field input,.ks-field select,.ks-field textarea,.ks-search,.ks-search input) { color: var(--ink); background: white; border-color: var(--border); color-scheme: light; }
+
 /* Enterprise and functional workspace surfaces retain distinct semantic states. */
+
 .kairos-sakura-theme .fw-root { color: var(--ink); }
+
 .kairos-sakura-theme :is(.fw-heading h3,.fw-kpis strong,.enterprise-claim p,.enterprise-clarification p,.enterprise-action-strip p,.fw-root button) { color: var(--ink); }
+
 .kairos-sakura-theme :is(.fw-context,.fw-heading p,.fw-root label,.fw-kpis span,.fw-day-head small,.fw-time-labels>div,.fw-footnote,.fw-muted,.fw-event-inspector p,.fw-no-links,.fw-dependency button small,.enterprise-evidence-heading small,.enterprise-sources small,.enterprise-limitations,.enterprise-detail-hint,.enterprise-more-findings>summary) { color: var(--muted); font-size: 13px; }
+
 .kairos-sakura-theme :is(.enterprise-claim p,.enterprise-clarification p,.enterprise-action-strip p,.enterprise-limitations) { font-size: 14px; }
+
 .kairos-sakura-theme :is(.enterprise-claim,.enterprise-detail,.fw-kpis>div,.fw-event-inspector,.fw-drawer,.fw-drawer pre,.fw-calendar-grid,.fw-time-labels,.fw-overlay) { background: #f7f2ec; border-color: var(--border); color: var(--ink); }
+
 .kairos-sakura-theme :is(.fw-time-head,.fw-day-head) { background: #eee7df; border-color: var(--border); }
+
 .kairos-sakura-theme :is(.fw-calendar-scroll,.fw-day-track,.fw-hour-row,.fw-root th,.fw-root td) { border-color: var(--border); }
+
 .kairos-sakura-theme .enterprise-claim-head { color: #206249; font-size: 12px; }
+
 .kairos-sakura-theme .enterprise-claim.uncertainty .enterprise-claim-head { color: var(--red); }
+
 .kairos-sakura-theme :is(.enterprise-claim.proposed_action .enterprise-claim-head,.enterprise-action-strip>strong) { color: #855b25; }
+
 .kairos-sakura-theme .enterprise-action-strip { background: #fff3df; border-color: #dfbc83; }
+
 .kairos-sakura-theme .fw-overlay span { color: var(--muted); }
+
 .kairos-sakura-theme .fw-link { color: var(--red); font-size: 12px; }
+
 .kairos-sakura-theme .fw-severity { background: #eee7ed; color: #65425c; }
+
 .kairos-sakura-theme .fw-severity.critical { background: #f9e2e8; color: #9e1628; }
+
 .kairos-sakura-theme .fw-severity.high { background: #fff0d4; color: #805318; }
+
 .kairos-sakura-theme .fw-drawer [role=alert] { color: var(--red); }
+
 /* Preserve event colors and compact calendar positioning; improve chart contrast. */
+
 .kairos-sakura-theme .recharts-cartesian-axis-tick text { fill: var(--muted); font-size: 12px; }
+
 .kairos-sakura-theme .recharts-cartesian-grid line { stroke: #ddd4ca; }
+
 .kairos-sakura-theme .recharts-pie-label-text { fill: var(--ink); }
+
 .kairos-sakura-theme .recharts-line-curve[stroke='#73d9ed'],.kairos-sakura-theme .recharts-area-curve { stroke: #24778a; }
+
 .kairos-sakura-theme .recharts-line-curve[stroke='#f5a9bf'] { stroke: var(--red); }
+
 .kairos-sakura-theme .chart-legend i { background: #24778a; }
+
 .kairos-sakura-theme .chart-legend i.previous { background: var(--red); }
+
 /* Recharts supplies inline tooltip styles, requiring targeted priority. */
+
 .kairos-sakura-theme .recharts-default-tooltip { background: var(--card) !important; border-color: var(--border) !important; color: var(--ink) !important; }
+
 .kairos-sakura-theme :is(.recharts-tooltip-label,.recharts-tooltip-item) { color: var(--ink) !important; }
+
 .kairos-sakura-theme :is(.ks-header,.ks-progress,.ks-footer,.ks-collisions>div) { border-color: var(--border); }
+
 .kairos-sakura-theme :is(.ks-header p,.ks-progress,.ks-field label,.ks-attendees-title small,.ks-organizer small,.ks-person small,.ks-footer p,.ks-review-card p,.ks-collisions span,.ks-success small) { color: var(--muted); font-size: 14px; }
+
 .kairos-sakura-theme :is(.ks-header small,.ks-progress .ks-active,.ks-attendees-title>span,.ks-review-card small,.ks-emblem) { color: var(--red); }
+
 .kairos-sakura-theme :is(.ks-organizer,.ks-person,.ks-review-card) { background: #f5efe8; border-color: var(--border); }
+
 .kairos-sakura-theme .ks-error { background: #f9e2e8; color: var(--red); border-color: #d792a0; }
+
 .kairos-sakura-theme .ks-info { background: #e9f3eb; border-color: #b8d7c3; color: #206249; }
+
 .kairos-sakura-theme .ks-warning { background: #fff3df; border-color: #dfbc83; color: #744714; }
+
 .kairos-sakura-theme :is(.ks-info p,.ks-warning p) { color: inherit; }
+
 .kairos-sakura-theme input { accent-color: var(--red); }
+
 .kairos-sakura-theme footer,.kairos-sakura-theme footer>span:first-child { color: var(--muted); font-size: 12px; }
+
 .kairos-sakura-theme footer p { font-size: 12px; }
+
 @media (max-width: 1200px) {
+
   .kairos-sakura-theme .sidebar { width: 220px; padding-inline: 14px; }
+
   .kairos-sakura-theme .app-body { margin-left: 220px; }
+
   .kairos-sakura-theme main { padding-inline: 26px; }
+
   .kairos-sakura-theme .topbar { padding-inline: 26px; }
+
   .kairos-sakura-theme .workspace-content.with-explanation { grid-template-columns: 1fr; }
+
   .kairos-sakura-theme .explanation { position: static; }
+
   .kairos-sakura-theme .hero-motif { width: 175px; transform: scale(.85); transform-origin: right center; margin-left: -20px; }
+
   .kairos-sakura-theme .command-top { align-items: flex-start; }
+
   .kairos-sakura-theme .planner-label { max-width: 200px; }
+
 }
+
 @media (max-width: 950px) {
+
   .kairos-sakura-theme { display: block; }
+
   .kairos-sakura-theme .sidebar { position: static; width: 100%; height: auto; display: grid; grid-template-columns: 1fr auto; gap: 18px; padding: 18px 24px; overflow: visible; }
+
   .kairos-sakura-theme .brand { margin: 0; padding: 0 8px; font-size: 24px; }
+
   .kairos-sakura-theme .brand>span:last-child { display: block; }
+
   .kairos-sakura-theme .brand small { font-size: 10px; }
+
   .kairos-sakura-theme .sidebar nav { display: flex; flex-wrap: wrap; gap: 6px; grid-column: 1/-1; grid-row: 2; }
+
   .kairos-sakura-theme .nav-item { width: auto; flex: 1 0 auto; justify-content: flex-start; font-size: 14px; margin: 0; padding: 10px; }
+
   .kairos-sakura-theme .nav-divider { display: none; }
+
   .kairos-sakura-theme .sidebar-bottom { margin: 0; padding: 0; }
+
   .kairos-sakura-theme .profile-button { padding: 0; margin: 0; border: 0; }
+
   .kairos-sakura-theme .app-body { margin-left: 0; }
+
   .kairos-sakura-theme .page-heading h1 { font-size: 42px; }
+
   .kairos-sakura-theme .size-medium,.kairos-sakura-theme .size-small { grid-column: span 6; }
+
   .kairos-sakura-theme .toolbar-buttons .secondary { font-size: 13px; }
+
   .kairos-sakura-theme .suggestion-grid { grid-template-columns: 1fr; }
+
 }
+
 @media (max-width: 600px) {
+
   .kairos-sakura-theme .sidebar { padding: 16px; }
+
   .kairos-sakura-theme .nav-item { flex: 1 1 45%; font-size: 13px; min-height: 44px; }
+
   .kairos-sakura-theme main { padding: 28px 16px 0; }
+
   .kairos-sakura-theme .topbar { padding: 14px 16px; flex-wrap: wrap; }
+
   .kairos-sakura-theme .breadcrumb { font-size: 13px; flex: 1 1 100%; }
+
   .kairos-sakura-theme .topbar-actions { margin-left: auto; }
+
   .kairos-sakura-theme .page-heading { min-height: 0; }
+
   .kairos-sakura-theme .page-heading h1 { font-size: 36px; letter-spacing: -1px; }
+
   .kairos-sakura-theme .page-heading p { font-size: 15px; }
+
   .kairos-sakura-theme .hero-motif { display: none; }
+
   .kairos-sakura-theme .command-top { padding: 18px 16px 0; flex-wrap: wrap; }
+
   .kairos-sakura-theme .command-top>span:first-child { font-size: 21px; }
+
   .kairos-sakura-theme .planner-label { max-width: none; text-align: left; }
+
   .kairos-sakura-theme .command-form { padding: 14px 16px; flex-wrap: wrap; }
+
   .kairos-sakura-theme .command-form input { flex-basis: 100%; font-size: 16px; }
+
   .kairos-sakura-theme .command-form .primary { width: 100%; }
+
   .kairos-sakura-theme .command-form .primary span { display: inline; }
+
   .kairos-sakura-theme .command-form>svg,.kairos-sakura-theme .command-form kbd { display: none; }
+
   .kairos-sakura-theme .command-bottom { padding: 12px 16px; }
+
   .kairos-sakura-theme .workspace-toolbar { flex-wrap: wrap; }
+
   .kairos-sakura-theme .workspace-toolbar h2 { font-size: 24px; }
+
   .kairos-sakura-theme .workspace-toolbar p { max-width: none; }
+
   .kairos-sakura-theme .toolbar-buttons { width: 100%; }
+
   .kairos-sakura-theme .widget { padding: 17px; }
+
   .kairos-sakura-theme .metric-grid { grid-template-columns: 1fr; gap: 16px; }
+
   .kairos-sakura-theme .metric-grid>div+div { border-left: 0; border-top: 1px solid var(--border); padding: 16px 0 0; }
+
   .kairos-sakura-theme .task { flex-wrap: wrap; }
+
   .kairos-sakura-theme .task>div { flex: 1; min-width: 0; }
+
   .kairos-sakura-theme .fw-week-nav { flex-wrap: wrap; white-space: normal; }
+
   .kairos-sakura-theme .fw-heading,.kairos-sakura-theme .fw-row { flex-wrap: wrap; }
+
   .kairos-sakura-theme .fw-root select { max-width: 100%; }
+
   .kairos-sakura-theme .connection-settings>div { flex-wrap: wrap; }
+
   .kairos-sakura-theme .enterprise-sources button { white-space: normal; overflow-wrap: anywhere; }
+
   .kairos-sakura-theme :is(.widget,.explanation,.enterprise-evidence,.fw-surface) { overflow-wrap: anywhere; }
+
 }
+
+
+
+/* KAIROS illustration refinement: reference-inspired Japanese scenic header.
+
+   Decoration only; existing data, controls and layouts remain unchanged. */
+
+.kairos-sakura-theme .topbar { position: relative; z-index: 2; }
+
+.kairos-sakura-theme .page-heading {
+
+  position: relative;
+
+  isolation: isolate;
+
+  min-height: 224px;
+
+}
+
+.kairos-sakura-theme .page-heading > div:first-child {
+
+  position: relative;
+
+  z-index: 1;
+
+  max-width: min(78%, 820px);
+
+}
+
+.kairos-sakura-theme .kairos-hero-art {
+
+  position: absolute;
+
+  z-index: 0;
+
+  top: -122px;
+
+  right: -36px;
+
+  width: min(70vw, 780px);
+
+  height: 355px;
+
+  overflow: hidden;
+
+  pointer-events: none;
+
+  user-select: none;
+
+}
+
+.kairos-sakura-theme .kairos-hero-svg {
+
+  display: block;
+
+  width: 100%;
+
+  height: 100%;
+
+  object-fit: contain;
+
+  pointer-events: none;
+
+}
+
+/* The same subtle ink-wave accent framing the target reference, kept off text. */
+
+.kairos-sakura-theme .page-heading::before {
+
+  content: '';
+
+  position: absolute;
+
+  left: -36px;
+
+  top: 75px;
+
+  width: 128px;
+
+  height: 115px;
+
+  pointer-events: none;
+
+  opacity: .38;
+
+  background: repeating-radial-gradient(circle at 50% 100%,
+
+    transparent 0 10px, rgba(179, 139, 87, .23) 11px 12px, transparent 13px 23px);
+
+  mask-image: linear-gradient(to right, #000, transparent);
+
+}
+
+/* Keep the existing Lovable cherry branches, but do not let them cross the logo. */
+
+.kairos-sakura-theme .sidebar .kairos-deco-sakura__upper {
+
+  right: -65px;
+
+  top: 12px;
+
+  opacity: .8;
+
+}
+
+.kairos-sakura-theme .sidebar .kairos-deco-sakura__lower { opacity: .65; }
+
+@media (max-width: 1350px) {
+
+  .kairos-sakura-theme .kairos-hero-art { width: min(64vw, 680px); right: -28px; }
+
+  .kairos-sakura-theme .page-heading > div:first-child { max-width: 78%; }
+
+}
+
+@media (max-width: 1050px) {
+
+  .kairos-sakura-theme .kairos-hero-art { width: 530px; top: -95px; opacity: .72; }
+
+  .kairos-sakura-theme .page-heading > div:first-child { max-width: 82%; }
+
+}
+
+@media (max-width: 950px) {
+
+  .kairos-sakura-theme .page-heading { min-height: 165px; }
+
+  .kairos-sakura-theme .page-heading > div:first-child { max-width: 100%; }
+
+  .kairos-sakura-theme .kairos-hero-art { width: 380px; right: -20px; top: -58px; opacity: .22; }
+
+  .kairos-sakura-theme .page-heading::before { display: none; }
+
+  .kairos-sakura-theme .sidebar .kairos-deco-sakura__upper { opacity: .35; }
+
+}
+
+@media (max-width: 600px) {
+
+  .kairos-sakura-theme .page-heading { min-height: 0; }
+
+  .kairos-sakura-theme .kairos-hero-art { display: none; }
+
+}
+
+
+
+
+
+/* KAIROS CURRENT HERO IMAGE — BEGIN */
+
+/* For App.tsx with <KairosHeroScene/>: hide only that decorative child.
+
+   The live title, breadcrumb, command bar and all application handlers remain untouched. */
+
+.app-shell.kairos-sakura-theme .page-heading {
+
+  display: flex;
+
+  justify-content: space-between;
+
+  align-items: center;
+
+  gap: 18px;
+
+  min-height: 280px;
+
+}
+
+.app-shell.kairos-sakura-theme .page-heading > div:first-child {
+
+  position: relative;
+
+  z-index: 1;
+
+  min-width: 0;
+
+  flex: 1 1 48%;
+
+}
+
+/* In the supplied App.tsx, the second (last) child is <KairosHeroScene/>. */
+
+.app-shell.kairos-sakura-theme .page-heading > :last-child {
+
+  display: none !important;
+
+}
+
+.app-shell.kairos-sakura-theme .page-heading::after {
+
+  content: "";
+
+  display: block;
+
+  flex: 0 1 48%;
+
+  width: 48%;
+
+  min-width: 260px;
+
+  height: clamp(220px, 25vw, 340px);
+
+  align-self: center;
+
+  background: url('/assets/kairos-fuji-panel.png') no-repeat center right / contain;
+
+  pointer-events: none;
+
+  user-select: none;
+
+}
+
+@media (max-width: 1100px) {
+
+  .app-shell.kairos-sakura-theme .page-heading { min-height: 230px; }
+
+  .app-shell.kairos-sakura-theme .page-heading::after {
+
+    min-width: 200px;
+
+    width: 42%;
+
+    flex-basis: 42%;
+
+    height: 245px;
+
+  }
+
+}
+
+@media (max-width: 760px) {
+
+  .app-shell.kairos-sakura-theme .page-heading { min-height: 0; }
+
+  .app-shell.kairos-sakura-theme .page-heading::after { display: none !important; }
+
+}
+
+/* KAIROS CURRENT HERO IMAGE — END */

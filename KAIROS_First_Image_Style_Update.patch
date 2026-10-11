@@ -1,0 +1,182 @@
+diff --git a/src/app/App.tsx b/src/app/App.tsx
+index e72df4f..dc123c6 100644
+--- a/src/app/App.tsx
++++ b/src/app/App.tsx
+@@ -17,7 +17,8 @@ import { scopeData } from '../data/selectors';
+ import { loadDataset, savedWorkspaces, saveWorkspace } from '../data/repository';
+ import { supabase } from '../lib/supabase';
+ import type { WorkspacePlan } from '../types/workspace';
+-import { SidebarSakuraBranches, BloodRedSun } from '../components/KairosDecorations';
++import { SidebarSakuraBranches } from '../components/KairosDecorations';
++import { KairosHeroScene } from '../components/KairosHeroScene';
+ import '../styles/kairos-sakura-theme.css';
+ const suggestions = [
+   { icon: CalendarDays, label: 'Walk into your next meeting prepared', detail: 'Client context, talking points & next steps', input: "Prepare me for tomorrow's client meeting with Acme Corp.", tag: 'MEETING PREP' },
+@@ -109,7 +110,7 @@ export default function App({ initialPrompt = '' }: { initialPrompt?: string })
+   return <div className="app-shell kairos-sakura-theme">
+     <aside className="sidebar"><SidebarSakuraBranches/><a className="brand" href="#main" onClick={e => { e.preventDefault(); reset(); }} aria-label="KAIROS home"><span className="brand-mark"><span/></span><span>カイロス <small>KAIROS</small></span></a><div className="workspace-label">YOUR SPACE <span>01</span></div><nav aria-label="Main navigation"><button className={plan.intent === 'overview' ? 'nav-item active' : 'nav-item'} onClick={reset}><LayoutDashboard size={18}/> Overview</button>{suggestions.map((s, i) => <button key={s.tag} className={`nav-item ${plan.intent === ['meeting', 'usage', 'projects'][i] ? 'active' : ''}`} disabled={busy} onClick={() => void submit(s.input)}><s.icon size={18}/>{['Meeting prep', 'Usage insights', 'Project review'][i]}</button>)}<div className="nav-divider"/><button className="nav-item" disabled={busy} onClick={() => user ? setMeetingComposer(true) : setAccountOpen(true)}><CalendarDays size={18}/> Schedule a meeting</button><button className="nav-item" onClick={() => void showHistory()}><Save size={18}/> Saved workspaces</button></nav><div className="sidebar-bottom"><div className="kai-card"><Kai state={state} compact/><p>A workspace that<br/>thinks with you.</p><span>Less searching. More doing.</span></div><div className="event-label"><span className="red-dot"/> BUILT FOR HACKWAVE 3.0</div><button className="profile-button" onClick={() => setAccountOpen(!accountOpen)}><span className="avatar small"><UserRound size={16}/></span><span>{user?.email?.split('@')[0] || 'Employee'}<small>{user ? 'Connected account' : 'Employee access'}</small></span><ChevronDown size={14}/></button></div></aside>
+     <div className="app-body"><header className="topbar"><div className="breadcrumb">Workspace <span>/</span> <strong>{enterprise ? enterprise.title : plan.intent === 'overview' ? 'Overview' : plan.intent === 'meeting' ? 'Meeting preparation' : plan.intent === 'usage' ? 'Usage investigation' : 'Project review'}</strong></div><div className="topbar-actions"><span className="mode-pill"><span/>{enterprise || connected ? 'CONNECTED DATA' : 'LOCAL DATA'}</span><button className="icon-button" aria-label="Account settings" onClick={() => setAccountOpen(!accountOpen)}><UserRound size={18}/></button></div></header>
+-    <main id="main"><div className="page-heading"><div><div className="eyebrow"><span className="red-line"/> INTENT INTO ACTION</div><h1>{plan.intent === 'overview' ? <>Your focus.<br/><span>Your workspace.</span></> : plan.title}</h1><p>{plan.intent === 'overview' ? 'The right interface at the right moment. Tell KAI what you want to accomplish.' : 'A workspace composed around your goal, with the context you need to act.'}</p></div><div className="hero-motif" aria-hidden="true"><BloodRedSun/><div className="motif-lines"/><span>FOCUS / CLARITY / MOMENT</span></div></div>
++    <main id="main"><div className="page-heading"><div><div className="eyebrow"><span className="red-line"/> INTENT INTO ACTION</div><h1>{plan.intent === 'overview' ? <>Your focus.<br/><span>Your workspace.</span></> : plan.title}</h1><p>{plan.intent === 'overview' ? 'The right interface at the right moment. Tell KAI what you want to accomplish.' : 'A workspace composed around your goal, with the context you need to act.'}</p></div><KairosHeroScene/></div>
+     <section className="command-section" aria-label="Describe your goal"><div className="command-top"><span><Sparkles size={14}/> What are we working on?</span><span className="planner-label">{source}</span></div><form className="command-form" onSubmit={e => { e.preventDefault(); void submit(input); }}><Command size={22}/><label className="sr-only" htmlFor="intent">Describe your goal</label><input ref={commandRef} id="intent" maxLength={2000} value={input} onChange={e => setInput(e.target.value)} placeholder="Prepare me for tomorrow’s client meeting with Acme Corp…" disabled={busy}/><kbd>Ctrl K</kbd><button className="primary" disabled={busy || !input.trim()} aria-label="Compose workspace">{busy ? 'Composing…' : <><span>Compose</span><ArrowRight size={17}/></>}</button></form><div className="command-bottom"><Kai state={state}/><span>Safe components. Relevant context. Your control.</span></div></section>
+     {notice && <div className="notice" role="status"><span>{notice}</span><button className="icon-button" aria-label="Dismiss notification" onClick={() => setNotice('')}><X size={16}/></button></div>}
+     {plan.clarification && <section className="clarification" role="region" aria-label="Clarification required"><HelpCircle size={22}/><div><h2>{plan.clarification.question}</h2><p>Your current workspace is kept until you choose.</p><div className="chips">{plan.clarification.options.map(option => <button key={option} disabled={busy} onClick={() => void submit(option)}>{option}<ArrowRight size={14}/></button>)}</div></div></section>}
+diff --git a/src/components/KairosHeroScene.tsx b/src/components/KairosHeroScene.tsx
+new file mode 100644
+index 0000000..ffcb355
+--- /dev/null
++++ b/src/components/KairosHeroScene.tsx
+@@ -0,0 +1,71 @@
++/** Decorative landscape only. One solid blood-red sun, Mount Fuji, a torii and sakura.
++ * Kept separate from business logic; the scene cannot intercept pointer events.
++ */
++const flowers: Array<[number, number, number, number]> = [
++  [475, 33, 1.06, 12], [510, 54, 0.9, -18], [539, 82, 0.95, 20],
++  [564, 31, 0.72, 8], [601, 39, 1.04, -7], [631, 10, 0.8, 12],
++  [655, 61, 1.18, -12], [693, 29, 0.91, 15], [728, 70, 0.85, 8],
++  [764, 42, 1.15, -20], [578, 97, 0.76, 25], [686, 91, 0.78, -3],
++  [741, 14, 0.77, 14], [459, 71, 0.62, -12], [612, 83, 0.66, 7],
++];
++const petals: Array<[number,number,number]> = [
++  [341, 96, 11], [411, 171, -29], [446, 113, 26], [501, 142, 17], [558, 180, -18],
++  [674, 119, 24], [760, 153, -20], [374, 250, 20], [613, 273, -36], [727, 235, 14],
++];
++
++export function KairosHeroScene() {
++  return (
++    <div className="kairos-hero-art" aria-hidden="true">
++      <svg className="kairos-hero-svg" viewBox="0 0 780 355" fill="none" xmlns="http://www.w3.org/2000/svg" focusable="false">
++        <defs>
++          <linearGradient id="kairos-scene-fade" x1="0" x2="1" y1="0" y2="0"><stop stopColor="white" stopOpacity="0"/><stop offset="0.21" stopColor="white" stopOpacity="0.55"/><stop offset="0.45" stopColor="white"/><stop offset="1" stopColor="white"/></linearGradient>
++          <linearGradient id="kairos-fuji-mist" x1="0" y1="0" x2="0" y2="1"><stop stopColor="#83939A" stopOpacity="0.85"/><stop offset="1" stopColor="#AEB4AF" stopOpacity="0.18"/></linearGradient>
++          <pattern id="kairos-seigaiha" x="0" y="0" width="54" height="24" patternUnits="userSpaceOnUse"><path d="M-27 24A27 27 0 0 1 27 24M0 24A27 27 0 0 1 54 24M-13.5 24A13.5 13.5 0 0 1 13.5 24M13.5 24A13.5 13.5 0 0 1 40.5 24M40.5 24A13.5 13.5 0 0 1 67.5 24" stroke="#CEA878" strokeWidth="1" opacity="0.25"/></pattern>
++          <mask id="kairos-scene-mask"><rect width="780" height="355" fill="url(#kairos-scene-fade)"/></mask>
++        </defs>
++        <g mask="url(#kairos-scene-mask)">
++          {/* Faint Japanese cloud strokes, kept behind the sun and mountain. */}
++          <g stroke="#D6A97E" strokeWidth="1.3" opacity="0.42" strokeLinecap="round">
++            <path d="M265 55h56c18 0 20-10 5-10h-14c-17 0-13-13 3-13h47"/>
++            <path d="M313 65h103c20 0 24-14 7-14h-25"/>
++            <path d="M395 118h57c15 0 17-11 3-11h-20"/>
++            <path d="M590 205h43c23 0 20-10 6-10h-10c-13 0-13-10 0-10h76"/>
++            <path d="M689 196h71c24 0 18-11 7-11h-15"/>
++          </g>
++          {/* Exactly one solid blood-red rising sun. */}
++          <circle cx="644" cy="181" r="89" fill="#9E1628"/>
++          {/* Mount Fuji and ridges rendered in muted, ink-wash geometry. */}
++          <path d="M379 319 529 256 589 218 628 194 658 220 725 271 780 305v47H379Z" fill="#B2B6AF" opacity="0.31"/>
++          <path d="m386 324 104-43 88-76 37-33 34 40 92 77 39 23v43H386Z" fill="url(#kairos-fuji-mist)"/>
++          <path d="m540 239 38-34 37-33 34 40 19 15-27-9-13 5-13-21-14 16-16-5-13 21-20-2Z" fill="#F8F4EE"/>
++          <path d="m588 210-25 31 19-15 6-16Zm29-17 14 36-3-25-11-11Zm24 25 29 30-15-28-14-2Z" fill="#687A83" opacity=".82"/>
++          <path d="m451 317 87-53 27-13-83 64m122-69 77 55-53-38m-123 62 77-52" stroke="#647B86" opacity=".34" strokeWidth="2"/>
++          {/* A restrained torii silhouette, with no text or interactivity. */}
++          <g transform="translate(714 232)" fill="#731728" stroke="#681320" strokeLinejoin="round">
++            <path d="M-41-6h88l7-7c-33 5-68 5-102-1l7 8Z"/>
++            <path d="M-35 4h77v8h-77zM-31 12h8v63h-8zM27 12h8v63h-8z"/>
++          </g>
++          {/* Birds. */}
++          <g stroke="#20303D" strokeWidth="2.2" strokeLinecap="round" opacity=".9"><path d="m559 147 8-4 8 5m5-9 8-3 7 4m-65-3 6-4 6 4"/></g>
++          {/* A decorative branch, not a page-sized floral photo. */}
++          <g stroke="#44232E" strokeLinecap="round" strokeLinejoin="round" fill="none">
++            <path d="M794-17C759 11 726 9 685 17s-68 27-101 45c-40 21-70 36-120 42" strokeWidth="5.5"/>
++            <path d="M686 17c-11 17-16 39-34 57s-43 26-58 46M616 40c-8-23-27-33-42-42M575 61c-10-9-30-11-49-4M730 12c-5 23-3 39-18 64M519 87c-19-16-35-14-51-14" strokeWidth="2.8"/>
++            <path d="M655 69c-22 1-34-8-46-16M611 98c4 18-5 28-17 41M748 27c-11-10-18-11-29-13" strokeWidth="1.8"/>
++          </g>
++          {/* Sakura blossoms with five separate petals and fine central dots. */}
++          {flowers.map(([x,y,s,angle],i)=>(
++            <g key={i} transform={`translate(${x} ${y}) rotate(${angle}) scale(${s})`}>
++              {[0,72,144,216,288].map(a=><ellipse key={a} cx="0" cy="-7.8" rx="5.3" ry="8.8" transform={`rotate(${a})`} fill={i%3===0?'#EF9BA9':'#E78096'} opacity=".83"/>)}
++              <circle r="3.2" fill="#8D2438"/>
++              <circle r="1.3" fill="#FCE4D8"/>
++            </g>
++          ))}
++          {petals.map(([x,y,angle],i)=><path key={i} d="M-9 0Q1-14 10 0Q1 10-9 0Z" transform={`translate(${x} ${y}) rotate(${angle})`} fill="#DD6179" opacity={i%2?.54:.72}/>)}
++          {/* Seigaiha wave pattern on the bottom edge. */}
++          <rect x="180" y="319" width="600" height="36" fill="url(#kairos-seigaiha)"/>
++        </g>
++      </svg>
++    </div>
++  );
++}
+diff --git a/src/styles/kairos-sakura-theme.css b/src/styles/kairos-sakura-theme.css
+index adaa965..02edc56 100644
+--- a/src/styles/kairos-sakura-theme.css
++++ b/src/styles/kairos-sakura-theme.css
+@@ -216,4 +216,76 @@
+   .kairos-sakura-theme .connection-settings>div { flex-wrap: wrap; }
+   .kairos-sakura-theme .enterprise-sources button { white-space: normal; overflow-wrap: anywhere; }
+   .kairos-sakura-theme :is(.widget,.explanation,.enterprise-evidence,.fw-surface) { overflow-wrap: anywhere; }
+-}
++}
++
++/* KAIROS illustration refinement: reference-inspired Japanese scenic header.
++   Decoration only; existing data, controls and layouts remain unchanged. */
++.kairos-sakura-theme .topbar { position: relative; z-index: 2; }
++.kairos-sakura-theme .page-heading {
++  position: relative;
++  isolation: isolate;
++  min-height: 224px;
++}
++.kairos-sakura-theme .page-heading > div:first-child {
++  position: relative;
++  z-index: 1;
++  max-width: min(78%, 820px);
++}
++.kairos-sakura-theme .kairos-hero-art {
++  position: absolute;
++  z-index: 0;
++  top: -122px;
++  right: -36px;
++  width: min(70vw, 780px);
++  height: 355px;
++  overflow: hidden;
++  pointer-events: none;
++  user-select: none;
++}
++.kairos-sakura-theme .kairos-hero-svg {
++  display: block;
++  width: 100%;
++  height: 100%;
++  object-fit: contain;
++  pointer-events: none;
++}
++/* The same subtle ink-wave accent framing the target reference, kept off text. */
++.kairos-sakura-theme .page-heading::before {
++  content: '';
++  position: absolute;
++  left: -36px;
++  top: 75px;
++  width: 128px;
++  height: 115px;
++  pointer-events: none;
++  opacity: .38;
++  background: repeating-radial-gradient(circle at 50% 100%,
++    transparent 0 10px, rgba(179, 139, 87, .23) 11px 12px, transparent 13px 23px);
++  mask-image: linear-gradient(to right, #000, transparent);
++}
++/* Keep the existing Lovable cherry branches, but do not let them cross the logo. */
++.kairos-sakura-theme .sidebar .kairos-deco-sakura__upper {
++  right: -65px;
++  top: 12px;
++  opacity: .8;
++}
++.kairos-sakura-theme .sidebar .kairos-deco-sakura__lower { opacity: .65; }
++@media (max-width: 1350px) {
++  .kairos-sakura-theme .kairos-hero-art { width: min(64vw, 680px); right: -28px; }
++  .kairos-sakura-theme .page-heading > div:first-child { max-width: 78%; }
++}
++@media (max-width: 1050px) {
++  .kairos-sakura-theme .kairos-hero-art { width: 530px; top: -95px; opacity: .72; }
++  .kairos-sakura-theme .page-heading > div:first-child { max-width: 82%; }
++}
++@media (max-width: 950px) {
++  .kairos-sakura-theme .page-heading { min-height: 165px; }
++  .kairos-sakura-theme .page-heading > div:first-child { max-width: 100%; }
++  .kairos-sakura-theme .kairos-hero-art { width: 380px; right: -20px; top: -58px; opacity: .22; }
++  .kairos-sakura-theme .page-heading::before { display: none; }
++  .kairos-sakura-theme .sidebar .kairos-deco-sakura__upper { opacity: .35; }
++}
++@media (max-width: 600px) {
++  .kairos-sakura-theme .page-heading { min-height: 0; }
++  .kairos-sakura-theme .kairos-hero-art { display: none; }
++}
