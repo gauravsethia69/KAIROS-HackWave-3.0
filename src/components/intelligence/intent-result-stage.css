@@ -1,0 +1,62 @@
+/* Pass 11: scoped to the authenticated workspace. Never changes Person B's landing, gate, or hero. */
+.kairos-sakura-theme .intent-result-stage {
+  --intent-accent:#9e1628; --intent-wash:#fff0f2;
+  margin:24px 0 18px; padding:0; border-radius:18px;
+  border:1px solid #e0d4c9; background:#fffcf8; overflow:hidden;
+  box-shadow:0 18px 45px rgba(41,28,23,.08),0 2px 6px rgba(41,28,23,.04);
+  scroll-margin-top:20px; animation:kairos-intent-enter .38s cubic-bezier(.2,.7,.2,1) both;
+}
+.kairos-sakura-theme .intent-kind-usage {--intent-accent:#145f72;--intent-wash:#eaf6f5}
+.kairos-sakura-theme .intent-kind-project {--intent-accent:#956325;--intent-wash:#fff3e0}
+.kairos-sakura-theme .intent-kind-support {--intent-accent:#ad2737;--intent-wash:#fff0f0}
+.kairos-sakura-theme .intent-kind-people {--intent-accent:#3f5d92;--intent-wash:#eff2fc}
+.kairos-sakura-theme .intent-kind-executive {--intent-accent:#573e80;--intent-wash:#f3eef9}
+.kairos-sakura-theme .intent-kind-meeting {--intent-accent:#9e1628;--intent-wash:#fff0f2}
+.kairos-sakura-theme .intent-result-stage:focus {outline:0}
+.kairos-sakura-theme .intent-result-stage:focus-visible {outline:3px solid var(--intent-accent);outline-offset:4px}
+.kairos-sakura-theme .intent-result-head {display:flex;gap:16px;align-items:center;padding:22px 26px 19px;border-bottom:1px solid #efe7df;background:linear-gradient(110deg,var(--intent-wash) 0%,#fffcf8 63%)}
+.kairos-sakura-theme .intent-result-icon {width:52px;height:52px;flex-shrink:0;display:grid;place-items:center;color:var(--intent-accent);background:#fff;border:1px solid #e9ddd4;border-radius:14px;box-shadow:0 5px 12px #33202210}
+.kairos-sakura-theme .intent-result-title-block {flex:1;min-width:0}
+.kairos-sakura-theme .intent-result-kicker {display:flex;flex-wrap:wrap;align-items:center;gap:7px;color:var(--intent-accent);font-size:10px;font-weight:750;letter-spacing:1.1px}
+.kairos-sakura-theme .intent-result-divider {width:3px;height:3px;border-radius:50%;background:#aab0b8}
+.kairos-sakura-theme .intent-result-title-block h2 {margin:7px 0 4px;color:#172033;font:600 clamp(25px,2.6vw,34px)/1.13 Georgia,'Times New Roman',serif;letter-spacing:-.6px}
+.kairos-sakura-theme .intent-result-title-block>p {margin:0;color:#586779;font-size:13px;line-height:1.5}
+.kairos-sakura-theme .intent-result-status {align-self:flex-start;flex-shrink:0;display:flex;align-items:center;gap:6px;padding:7px 10px;border-radius:99px;font-size:10px;font-weight:750;letter-spacing:.7px;background:#eaf3ed;border:1px solid #bcd8c5;color:#286144}
+.kairos-sakura-theme .intent-result-status.partial,.kairos-sakura-theme .intent-result-status.clarification {background:#fff3de;color:#87551b;border-color:#e9cea4}
+.kairos-sakura-theme .intent-result-status.unsupported,.kairos-sakura-theme .intent-result-status.not_found {background:#fce5e9;color:#9e1628;border-color:#eac0c7}
+.kairos-sakura-theme .intent-result-body {display:grid;grid-template-columns:minmax(0,1.4fr) minmax(240px,1fr);gap:0}
+.kairos-sakura-theme .intent-result-insight {padding:25px 26px 24px;min-width:0}
+.kairos-sakura-theme .intent-result-micro {display:block;color:var(--intent-accent);font-size:10px;font-weight:750;letter-spacing:1.6px}
+.kairos-sakura-theme .intent-result-primary {margin:12px 0 17px;color:#1d2837;font:500 clamp(17px,1.7vw,23px)/1.55 Georgia,'Times New Roman',serif;overflow-wrap:anywhere}
+.kairos-sakura-theme .intent-result-provenance {display:flex;align-items:flex-start;gap:6px;color:#647083;font-size:11px;line-height:1.5}
+.kairos-sakura-theme .intent-result-provenance svg {flex-shrink:0;margin-top:1px;color:var(--intent-accent)}
+.kairos-sakura-theme .intent-result-composition {padding:23px 24px 21px;background:#f9f5f0;border-left:1px solid #eee4d9}
+.kairos-sakura-theme .intent-composition-caption {display:flex;align-items:center;gap:7px;color:var(--intent-accent);font-weight:750;letter-spacing:1.15px;font-size:10px}
+.kairos-sakura-theme .intent-result-composition>strong {display:block;margin-top:10px;color:#1e2b3b;font:600 18px/1.3 Georgia,serif}
+.kairos-sakura-theme .intent-result-composition>p {font-size:12px;color:#697384;line-height:1.5;margin:6px 0 11px}
+.kairos-sakura-theme .intent-result-composition ul {list-style:none;margin:0;padding:0;display:grid;gap:8px}
+.kairos-sakura-theme .intent-result-composition li {display:flex;align-items:flex-start;gap:8px;font-size:12px;color:#334253;line-height:1.5}
+.kairos-sakura-theme .intent-result-composition li svg {color:var(--intent-accent);flex-shrink:0;margin-top:2px}
+.kairos-sakura-theme .intent-result-awaiting {font-size:12px;color:#7b6670;line-height:1.5}
+.kairos-sakura-theme .intent-result-actions {display:flex;align-items:center;flex-wrap:wrap;gap:9px;padding:15px 26px;border-top:1px solid #eee5dd}
+.kairos-sakura-theme .intent-result-actions button {display:inline-flex;align-items:center;justify-content:center;gap:10px;border-radius:9px;min-height:40px;padding:10px 14px;font-size:12px;font-weight:650;cursor:pointer;transition:transform .15s ease,background .15s ease}
+.kairos-sakura-theme .intent-result-actions button:not(:disabled):hover {transform:translateY(-1px)}
+.kairos-sakura-theme .intent-result-actions button:disabled {cursor:not-allowed;opacity:.43}
+.kairos-sakura-theme .intent-open-workspace {background:var(--intent-accent);color:#fff;border:1px solid var(--intent-accent)}
+.kairos-sakura-theme .intent-evidence-jump {background:#fff;color:#263446;border:1px solid #e3d8cf}
+.kairos-sakura-theme .intent-result-verified {display:inline-flex;align-items:center;gap:5px;margin-left:auto;font-size:11px;color:#697487}
+.kairos-sakura-theme .intent-reasoning {border-top:1px solid #eee5dd;padding:0 26px}
+.kairos-sakura-theme .intent-reasoning summary {list-style:none;display:flex;align-items:center;flex-wrap:wrap;gap:8px;padding:15px 0;cursor:pointer;font-size:12px;font-weight:650;color:#354255}
+.kairos-sakura-theme .intent-reasoning summary::-webkit-details-marker {display:none}
+.kairos-sakura-theme .intent-reasoning summary svg {color:var(--intent-accent)}
+.kairos-sakura-theme .intent-reasoning summary span {font-size:11px;color:#778297;font-weight:400}
+.kairos-sakura-theme .intent-reasoning ol {margin:0 0 18px;padding-left:24px;display:grid;gap:8px;color:#44566d;font-size:12px;line-height:1.6}
+@keyframes kairos-intent-enter {from{opacity:0;transform:translateY(14px)}to{opacity:1;transform:translateY(0)}}
+@media(max-width:850px){.kairos-sakura-theme .intent-result-body{grid-template-columns:1fr}.kairos-sakura-theme .intent-result-composition{border-left:0;border-top:1px solid #eee4d9}.kairos-sakura-theme .intent-result-verified{margin-left:0}}
+@media(max-width:540px){.kairos-sakura-theme .intent-result-head{padding:17px;gap:10px;flex-wrap:wrap}.kairos-sakura-theme .intent-result-icon{width:42px;height:42px}.kairos-sakura-theme .intent-result-status{margin-left:52px}.kairos-sakura-theme .intent-result-insight,.kairos-sakura-theme .intent-result-composition{padding:19px 17px}.kairos-sakura-theme .intent-result-actions{padding:14px 17px}.kairos-sakura-theme .intent-result-actions button{width:100%}.kairos-sakura-theme .intent-reasoning{padding:0 17px}}
+@media(prefers-reduced-motion:reduce){.kairos-sakura-theme .intent-result-stage{animation:none}.kairos-sakura-theme .intent-result-actions button{transition:none}}
+.kairos-sakura-theme .composed-result-anchor,.kairos-sakura-theme #kairos-adaptive-workspace,.kairos-sakura-theme .intent-evidence-anchor {scroll-margin-top:22px}
+.kairos-sakura-theme :is(.composed-result-anchor,.intent-evidence-anchor,#kairos-adaptive-workspace):focus {outline:0}
+.kairos-sakura-theme :is(.composed-result-anchor,.intent-evidence-anchor,#kairos-adaptive-workspace):focus-visible {outline:2px solid #9e1628;outline-offset:4px}
+/* The rich widgets are now the primary interface; evidence follows as an audit trail. */
+.kairos-sakura-theme .intent-evidence-anchor .enterprise-evidence{margin-top:22px}

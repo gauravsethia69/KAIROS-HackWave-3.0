@@ -1,5 +1,6 @@
 """Schedule-specific planner guardrails; synthetic fixtures and no external calls."""
 import unittest
+from unittest.mock import patch
 from datetime import date
 
 from backend.intelligence.intent import resolve_intent
@@ -92,8 +93,16 @@ class TimetablePass5Tests(unittest.TestCase):
         app.dependency_overrides[current_user] = lambda: USER
         app.dependency_overrides[plan_snapshot] = lambda: self.data
         try:
-            response = TestClient(app).post('/api/intelligence/workspace/plan',
-                                            json={'input': 'Show Avery Test schedule for next week'})
+            # Freeze the *test API* to the same date as fixture() to prevent
+            # date rollover from changing the meaning of "next week".
+            with (
+                patch('backend.routers.intelligence.resolve_intent',
+                      side_effect=lambda *args, **kwargs: resolve_intent(*args, today=TODAY, **kwargs)),
+                patch('backend.routers.intelligence.compose_workspace',
+                      side_effect=lambda *args, **kwargs: compose_workspace(*args, today=TODAY, **kwargs)),
+            ):
+                response = TestClient(app).post('/api/intelligence/workspace/plan',
+                                                json={'input': 'Show Avery Test schedule for next week'})
             self.assertEqual(response.status_code, 200, response.text)
             body = response.json()
             self.assertEqual(body['schemaVersion'], 2)

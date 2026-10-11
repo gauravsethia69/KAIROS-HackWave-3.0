@@ -18,6 +18,7 @@ const componentSchema = z.object({
   size: z.enum(['small','medium','wide']), props: z.object({selector: z.enum(['clients','meetings','communications','usage','tasks','projects','issues','insights','activity']), record_ids: z.array(z.string()), binding: z.literal('response.datasets')}), evidence_ids: z.array(z.string()), reason: z.string(),
 }).passthrough();
 const responseSchema = z.object({
+  intelligence: z.object({ status: z.enum(['off','enriched','fallback','budget']), model: z.string().nullish() }).optional(),
   schemaVersion: z.literal(2), source: z.literal('deterministic-enterprise'),
   status: z.enum(['ready', 'partial', 'clarification', 'not_found', 'unsupported']), title: z.string(),
   intent: z.object({

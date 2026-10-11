@@ -1,0 +1,29 @@
+/* Pass 12E: scoped standalone strategy view; no global UI/layout changes. */
+.kairos-sakura-theme .kairos-general-advice{background:#fffbf7;color:#263245;border:1px solid #ead8d0;border-radius:22px;overflow:hidden;box-shadow:0 12px 34px #4d243014;margin:20px 0 35px;scroll-margin-top:30px}
+.kairos-sakura-theme .kairos-general-header{display:flex;align-items:center;gap:18px;padding:28px 30px;background:linear-gradient(110deg,#fff0f1,#fffaf4 75%);border-bottom:1px solid #ebdfe0}
+.kairos-sakura-theme .kairos-general-symbol{display:grid;place-items:center;color:#ae2b45;background:white;border:1px solid #edd7d9;border-radius:16px;width:56px;height:56px;flex-shrink:0}
+.kairos-sakura-theme .kairos-general-heading{flex:1;min-width:0}
+.kairos-sakura-theme .kairos-general-eyebrow{display:flex;gap:7px;align-items:center;color:#a72342;font-size:10px;letter-spacing:1.5px;font-weight:800}
+.kairos-sakura-theme .kairos-general-header h2{font:600 clamp(26px,2.6vw,38px)/1.2 Georgia,serif;color:#1e2940;margin:7px 0}
+.kairos-sakura-theme .kairos-general-header p{font-size:13px;color:#697687;margin:0}
+.kairos-sakura-theme .kairos-general-tag{display:flex;align-items:center;gap:6px;border:1px solid #c4ddcd;background:#eaf4ed;color:#286743;border-radius:30px;font-size:10px;padding:9px 12px;font-weight:800;align-self:flex-start;white-space:nowrap}
+.kairos-sakura-theme .kairos-general-content{padding:27px 32px}
+.kairos-sakura-theme .kairos-general-lead{font-size:17px;line-height:1.7;color:#263147;margin:0 0 25px}
+.kairos-sakura-theme .kairos-general-steps{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:14px}
+.kairos-sakura-theme .kairos-general-step{display:flex;gap:13px;border:1px solid #e9dcd3;border-radius:14px;background:#fff7f0;padding:20px}
+.kairos-sakura-theme .kairos-general-number{display:grid;place-items:center;background:#f7e3e5;color:#a52644;width:32px;height:32px;flex-shrink:0;border-radius:10px;font-weight:800;font-size:11px}
+.kairos-sakura-theme .kairos-general-step h3{font-size:15px;line-height:1.45;margin:2px 0 8px;color:#243147}
+.kairos-sakura-theme .kairos-general-step p{font-size:13px;line-height:1.65;margin:0;color:#617083}
+.kairos-sakura-theme .kairos-general-note{margin-top:20px;padding:14px 16px;border:1px solid #e4d3bd;border-radius:11px;background:#fff3df;display:flex;gap:10px;align-items:start;color:#785323;font-size:12px;line-height:1.6}
+.kairos-sakura-theme .kairos-general-note svg{flex-shrink:0;margin-top:2px}
+.kairos-sakura-theme .kairos-general-disclosure{display:flex;align-items:center;gap:8px;color:#758094;font-size:11px;line-height:1.6;margin:19px 0 0}
+.kairos-sakura-theme .kairos-general-disclosure svg{flex-shrink:0}
+.kairos-sakura-theme .kairos-general-loading{display:flex;align-items:center;gap:14px;padding:38px 32px;color:#344055}
+.kairos-sakura-theme .kairos-general-loading p{font-size:13px;color:#6e7988;margin:6px 0 0}
+.kairos-sakura-theme .kairos-general-unavailable{padding:30px 32px;color:#7b4b3f}
+.kairos-sakura-theme .kairos-general-unavailable button{display:flex;align-items:center;gap:9px;margin-top:15px;cursor:pointer;border:1px solid #cdb1a4;border-radius:10px;background:white;padding:10px 14px;color:#973147;font-weight:700}
+.kairos-sakura-theme .kairos-general-spin{animation:kairos-general-rotate 1.2s linear infinite}
+@keyframes kairos-general-rotate{to{transform:rotate(360deg)}}
+@media(max-width:850px){.kairos-sakura-theme .kairos-general-steps{grid-template-columns:1fr}.kairos-sakura-theme .kairos-general-header{flex-wrap:wrap}.kairos-sakura-theme .kairos-general-tag{margin-left:70px}}
+@media(max-width:530px){.kairos-sakura-theme .kairos-general-header,.kairos-sakura-theme .kairos-general-content{padding:19px}.kairos-sakura-theme .kairos-general-step{padding:14px}}
+@media(prefers-reduced-motion:reduce){.kairos-sakura-theme .kairos-general-spin{animation:none}}

@@ -114,8 +114,15 @@ class ComponentPlan(Strict):
         return self
 
 
+class IntelligenceMeta(Strict):
+    # Purely informational: does not assert that the LLM supplied any facts.
+    status: Literal['off', 'enriched', 'fallback', 'budget'] = 'off'
+    model: str | None = Field(default=None, max_length=100)
+
+
 class Workspace(Strict):
     schemaVersion: Literal[2] = 2
+    intelligence: IntelligenceMeta = Field(default_factory=IntelligenceMeta)
     source: Literal['deterministic-enterprise'] = 'deterministic-enterprise'
     status: Literal['ready', 'partial', 'clarification', 'not_found', 'unsupported']
     title: str

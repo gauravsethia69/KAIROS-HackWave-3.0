@@ -1,0 +1,21 @@
+.kairos-ai-explain{margin:22px 0 26px;padding:22px 26px;border:1px solid #e7d6c4;border-radius:20px;background:linear-gradient(115deg,#fff9f1,#fffdfb);box-shadow:0 4px 24px #6c3b150c;color:#202b3e}
+.kairos-ai-explain-top{display:flex;align-items:center;justify-content:space-between;gap:22px;flex-wrap:wrap}
+.kairos-ai-label{display:flex;align-items:center;gap:6px;letter-spacing:.09em;font-size:11px;font-weight:800;color:#986124}
+.kairos-ai-explain h3{font-family:Georgia,serif;font-size:25px;margin:7px 0 5px}
+.kairos-ai-explain p{margin:0;color:#586476;line-height:1.65}
+.kairos-ai-trigger{display:flex;align-items:center;justify-content:center;gap:8px;min-height:43px;padding:9px 16px;color:#fff;background:#9c5b1c;border:1px solid #9c5b1c;border-radius:10px;font-weight:750;cursor:pointer}
+.kairos-ai-trigger:disabled{opacity:.55;cursor:wait}
+.kairos-ai-answer{margin-top:20px}
+.kairos-ai-answer .kairos-ai-callout{display:flex;gap:8px;align-items:center;color:#345f4b;font-weight:700;margin:0 0 12px}
+.kairos-ai-point{padding:17px 19px;margin:12px 0;border-radius:12px;border:1px solid #eadac9;background:#fff}
+.kairos-ai-point strong{display:block;font-size:11px;text-transform:uppercase;color:#946026;letter-spacing:.06em;margin:5px 0}
+.kairos-ai-point p{color:#243146;margin:0 0 12px}
+.kairos-ai-point small{color:#647084}
+.kairos-ai-sources{margin-top:15px;padding:11px 14px;background:#fff;border:1px solid #eadac9;border-radius:11px}
+.kairos-ai-sources summary{cursor:pointer;display:flex;gap:8px;align-items:center;font-weight:700;color:#8c581f}
+.kairos-ai-sources p{padding:12px 0;border-top:1px solid #eee2d6;margin-top:10px}
+.kairos-ai-sources p span{display:block;margin-top:4px;color:#455167}
+.kairos-ai-meter{border-top:1px solid #e8d8c5;margin-top:17px;padding-top:12px;display:flex;flex-wrap:wrap;align-items:center;gap:12px;font-size:12px;color:#607088}
+.kairos-ai-meter button{display:flex;align-items:center;gap:6px;background:transparent;border:0;color:#8a5418;text-decoration:underline;cursor:pointer;padding:4px 0}
+@keyframes kairos-ai-spin{to{transform:rotate(360deg)}}.kairos-ai-spin{animation:kairos-ai-spin 1s linear infinite}
+@media(max-width:650px){.kairos-ai-explain{padding:15px}.kairos-ai-explain-top{display:block}.kairos-ai-trigger{margin-top:12px;width:100%}}

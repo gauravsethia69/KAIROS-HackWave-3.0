@@ -10,6 +10,9 @@ from .intelligence.gateway import invalidate_snapshots
 from .routers.api import router
 from .routers.intelligence import router as intelligence_router
 from .routers.scheduling import router as scheduling_router
+from .routers.atlas import router as atlas_router
+from .routers.company_guide import router as company_guide_router  # Pass 12C
+from .routers.general_advice import router as general_advice_router  # Pass 12E
 
 
 @asynccontextmanager
@@ -59,6 +62,9 @@ app.add_middleware(CORSMiddleware, allow_origins=settings.origins, allow_methods
 app.include_router(router)
 app.include_router(intelligence_router)
 app.include_router(scheduling_router)
+app.include_router(atlas_router)
+app.include_router(company_guide_router)
+app.include_router(general_advice_router)
 
 
 @app.get('/health')

@@ -1,0 +1,72 @@
+/* Pass 12C: scoped to KAIROS; never modifies Person B's landing or gate styles. */
+.kairos-sakura-theme .company-guide{margin:24px 0;background:#fffcf8;border:1px solid #e5d8cd;border-radius:20px;overflow:hidden;box-shadow:0 18px 45px #28192012;scroll-margin-top:24px}
+.kairos-sakura-theme .company-guide-hero{display:flex;align-items:center;gap:17px;padding:24px 28px;background:linear-gradient(105deg,#ffeff1,#fffaf4 68%);border-bottom:1px solid #eedfd7}
+.kairos-sakura-theme .company-guide-logo{width:54px;height:54px;display:grid;place-items:center;border-radius:15px;color:#a41e32;background:white;border:1px solid #edd9d7;flex-shrink:0}
+.kairos-sakura-theme .company-guide-hero>div:nth-child(2){flex:1;min-width:0}
+.kairos-sakura-theme .company-guide-eyebrow{font-size:10px;letter-spacing:1.2px;font-weight:750;color:#9e1628;display:flex;gap:7px;align-items:center}
+.kairos-sakura-theme .company-guide-hero h2{font:600 clamp(25px,2.6vw,38px)/1.17 Georgia,serif;color:#182035;margin:9px 0 7px}
+.kairos-sakura-theme .company-guide-hero p{color:#677587;font-size:13px;margin:0}
+.kairos-sakura-theme .company-guide-trusted{align-self:flex-start;display:flex;align-items:center;gap:5px;background:#e9f4ec;color:#276443;border:1px solid #bfddc9;border-radius:40px;padding:8px 11px;font-size:10px;font-weight:700;white-space:nowrap}
+.kairos-sakura-theme .company-guide-intro{display:flex;align-items:flex-start;gap:12px;margin:24px 28px;padding:18px 20px;background:#fff5e9;border:1px solid #ecd9c4;border-radius:12px;color:#855320}
+.kairos-sakura-theme .company-guide-intro svg{flex-shrink:0}
+.kairos-sakura-theme .company-guide-intro strong{color:#394052;font-size:14px}
+.kairos-sakura-theme .company-guide-intro p{margin:6px 0 0;font-size:12px;line-height:1.65;color:#667383}
+.kairos-sakura-theme .company-guide-ai-bar{margin:0 28px 23px;border:1px solid #e5d7c8;background:#f8f3ee;padding:13px 16px;border-radius:11px;display:flex;align-items:center;gap:9px;flex-wrap:wrap;color:#694c54;font-size:12px;line-height:1.5}
+.kairos-sakura-theme .company-guide-ai-bar svg{color:#ad253a;flex-shrink:0}
+.kairos-sakura-theme .company-guide-spin{animation:kairos-guide-turn 1.2s linear infinite}
+@keyframes kairos-guide-turn{to{transform:rotate(360deg)}}
+.kairos-sakura-theme .company-guide-group-heading{font:600 20px/1.4 Georgia,serif;color:#1a2738;margin:26px 28px 12px}
+.kairos-sakura-theme .company-guide-group-heading span{display:block;font:400 11px/1.5 system-ui,sans-serif;color:#7a8390;margin-top:2px}
+.kairos-sakura-theme .company-guide-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:13px;margin:0 28px 25px}
+.kairos-sakura-theme .company-guide-passage{min-width:0;padding:18px 20px;background:#fbf7f1;border:1px solid #e9dfd5;border-radius:13px}
+.kairos-sakura-theme .company-guide-passage-top{display:flex;justify-content:space-between;gap:10px;flex-wrap:wrap;align-items:center}
+.kairos-sakura-theme .company-guide-page{color:#a42d43;font-size:10px;font-weight:750;letter-spacing:1px}
+.kairos-sakura-theme .company-guide-status{font-size:10px;font-weight:750;letter-spacing:.4px;color:#3e694d;background:#e9f3e9;padding:5px 8px;border-radius:10px}
+.kairos-sakura-theme .company-guide-status.proposed{color:#8d5718;background:#fff0d8}
+.kairos-sakura-theme .company-guide-passage h3{font:600 18px/1.3 Georgia,serif;color:#202c3d;margin:15px 0 5px}
+.kairos-sakura-theme .company-guide-section{font-size:11px;color:#778397;margin:0 0 9px}
+.kairos-sakura-theme .company-guide-summary{font-size:14px;color:#1f2e3e;line-height:1.7;margin:12px 0}
+.kairos-sakura-theme .company-guide-original{font-size:12px;color:#354456;line-height:1.65;margin:11px 0}
+.kairos-sakura-theme .company-guide-passage details{margin:12px 0;color:#3e5166;font-size:12px}
+.kairos-sakura-theme .company-guide-passage details summary{cursor:pointer;font-weight:650}
+.kairos-sakura-theme .company-guide-passage details p{font-size:12px;line-height:1.65}
+.kairos-sakura-theme .company-guide-source{border-top:1px solid #e7dfd7;margin-top:15px;padding-top:11px;display:flex;gap:7px;align-items:start;color:#66788c;overflow-wrap:anywhere;font-size:10px;line-height:1.6}
+.kairos-sakura-theme .company-guide-source svg{flex-shrink:0;margin-top:2px}
+.kairos-sakura-theme .company-guide-more{margin:0 28px 22px;color:#4b5f73;font-size:12px}
+.kairos-sakura-theme .company-guide-more summary{cursor:pointer;display:flex;align-items:center;gap:7px;font-weight:600;margin:0 0 14px}
+.kairos-sakura-theme .company-guide-more .company-guide-grid{margin:0}
+.kairos-sakura-theme .company-guide-footer{margin:0;padding:18px 28px;background:#f6f1eb;border-top:1px solid #eaded6;display:flex;gap:10px;align-items:start;color:#556378;font-size:11px;line-height:1.6}
+.kairos-sakura-theme .company-guide-footer svg{flex-shrink:0;margin-top:1px}
+.kairos-sakura-theme .company-guide-empty{margin:20px 28px;font-size:14px;color:#556576}
+@media(max-width:820px){.kairos-sakura-theme .company-guide-grid{grid-template-columns:1fr}.kairos-sakura-theme .company-guide-hero{flex-wrap:wrap}.kairos-sakura-theme .company-guide-trusted{margin-left:70px}}
+@media(max-width:480px){.kairos-sakura-theme .company-guide-hero,.kairos-sakura-theme .company-guide-footer{padding:18px}.kairos-sakura-theme .company-guide-grid{margin:0 16px 20px}.kairos-sakura-theme .company-guide-group-heading{margin:20px 16px 12px}.kairos-sakura-theme .company-guide-intro,.kairos-sakura-theme .company-guide-ai-bar{margin:16px}}
+@media(prefers-reduced-motion:reduce){.kairos-sakura-theme .company-guide-spin{animation:none}}
+
+/* Pass 12D.1: prominently visible, user-triggered company-guide explanation. */
+.kairos-sakura-theme .company-guide-ai-choice{margin:0 28px 16px;padding:22px;display:flex;align-items:center;justify-content:space-between;gap:22px;flex-wrap:wrap;background:linear-gradient(112deg,#fff1f0,#fff8ec 90%);border:1px solid #e9c8c9;border-radius:15px}
+.kairos-sakura-theme .company-guide-ai-choice-copy{flex:1;min-width:230px}
+.kairos-sakura-theme .company-guide-ai-choice-kicker{display:flex;align-items:center;gap:7px;font-weight:800;letter-spacing:1px;color:#a31b3a;font-size:11px;margin-bottom:8px}
+.kairos-sakura-theme .company-guide-ai-choice-copy strong{display:block;color:#18263c;font:600 20px/1.3 Georgia,serif}
+.kairos-sakura-theme .company-guide-ai-choice-copy p{color:#58677a;font-size:13px;line-height:1.65;margin:8px 0}
+.kairos-sakura-theme .company-guide-ai-cost{font-size:11px;color:#7f6d6d}
+.kairos-sakura-theme .company-guide-explain-button{border:0;border-radius:12px;padding:14px 18px;background:#ab334a;color:white;min-height:48px;display:inline-flex;align-items:center;justify-content:center;gap:10px;cursor:pointer;font-size:13px;font-weight:750;box-shadow:0 8px 20px #9a2e4c30}
+.kairos-sakura-theme .company-guide-explain-button:hover:not(:disabled){background:#8c1a32;transform:translateY(-1px)}
+.kairos-sakura-theme .company-guide-explain-button:focus-visible{outline:3px solid #d28996;outline-offset:3px}
+.kairos-sakura-theme .company-guide-explain-button:disabled{opacity:.65;cursor:wait}
+.kairos-sakura-theme .company-guide-ai-answer{margin:18px 28px 28px;padding:21px 22px;background:#fffaf7;border:1px solid #dfd4c9;border-radius:15px}
+.kairos-sakura-theme .company-guide-ai-answer h3{display:flex;align-items:center;gap:9px;color:#172237;font:600 22px/1.3 Georgia,serif;margin:0 0 6px}
+.kairos-sakura-theme .company-guide-ai-answer h3 svg{color:#a72345}
+.kairos-sakura-theme .company-guide-ai-answer-note{color:#667487;font-size:12px;margin:0 0 17px;line-height:1.6}
+.kairos-sakura-theme .company-guide-ai-point{display:flex;gap:15px;padding:13px 0;border-top:1px solid #e9ddd6}
+.kairos-sakura-theme .company-guide-ai-point-number{flex-shrink:0;display:grid;place-items:center;background:#ffeaec;color:#aa3047;width:32px;height:32px;border-radius:10px;font-weight:750;font-size:12px}
+.kairos-sakura-theme .company-guide-ai-point h4{color:#1f293b;font-size:14px;margin:1px 0 7px}
+.kairos-sakura-theme .company-guide-ai-point p{font-size:13px;line-height:1.7;color:#3d4b5d;margin:0 0 9px}
+.kairos-sakura-theme .company-guide-ai-citation{font-size:11px;color:#6b798b;display:flex;gap:5px;align-items:center;flex-wrap:wrap}
+@media(max-width:700px){.kairos-sakura-theme .company-guide-ai-choice{margin:0 16px 14px;padding:17px}.kairos-sakura-theme .company-guide-explain-button{width:100%}.kairos-sakura-theme .company-guide-ai-answer{margin:16px;padding:16px}}
+@media(prefers-reduced-motion:reduce){.kairos-sakura-theme .company-guide-explain-button:hover:not(:disabled){transform:none}}
+
+.kairos-sakura-theme .company-guide-ai-actions{display:flex;align-items:center;flex-direction:column;gap:10px}
+.kairos-sakura-theme .company-guide-atlas-link{font-size:12px;color:#784b55;text-decoration:underline;text-underline-offset:3px;font-weight:600}
+.kairos-sakura-theme .company-guide-atlas-link:focus-visible{outline:3px solid #d28996;outline-offset:3px}
+.kairos-sakura-theme #kairos-atlas-sources{scroll-margin-top:20px}
+@media(max-width:700px){.kairos-sakura-theme .company-guide-ai-actions{width:100%}}

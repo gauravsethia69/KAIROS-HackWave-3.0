@@ -64,7 +64,7 @@ export function EnterpriseAnswerView({result,onSelect}:{result:EnterpriseRespons
     </article>;
   }
   return <section className="enterprise-evidence" aria-label="Enterprise answer and source records">
-    <div className="enterprise-evidence-heading"><FileSearch size={20}/><div><strong>KAIROS verified answer</strong><small>Authenticated SORYU records · evidence-linked · deterministic</small></div></div>
+    <div className="enterprise-evidence-heading"><FileSearch size={20}/><div><strong>KAIROS verified answer</strong><small>{result.intelligence?.status === 'enriched' ? 'Groq-ranked · verified SORYU records · evidence-linked' : 'Authenticated SORYU records · evidence-linked · deterministic'}</small></div></div>
     {clarity&&<div className="enterprise-clarification"><strong>{clarity.question}</strong><div className="enterprise-choice-list">{clarity.candidates.map(candidate=><button key={`${candidate.entity.entity_type}:${candidate.entity.entity_id}`} onClick={()=>onSelect(candidate.entity)}>{candidate.label}<ArrowUpRight size={13}/></button>)}</div>{!!clarity.suggestions.length&&<p>Try: {clarity.suggestions.join(' · ')}</p>}</div>}
     {(result.status==='unsupported'||result.status==='not_found')&&!factual.length&&<p role="status">No matching verified records were found. Refine the employee, client or date.</p>}
     {!!highlighted.length&&<div className="enterprise-claims enterprise-summary">{highlighted.map((c,i)=><Card claim={c} index={i} key={`${i}-highlight`}/>)}</div>}

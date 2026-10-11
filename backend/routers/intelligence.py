@@ -13,6 +13,9 @@ from ..intelligence.knowledge import Knowledge, Metadata
 from ..intelligence.models import EntityKind, EntityRef, Evidence, IntentRequest, ResolvedIntent, Workspace
 from ..intelligence.repository import Snapshot
 from ..intelligence.gateway import load_read_snapshot
+from ..intelligence.groq_deadline import groq_enrich_with_deadline
+from ..intelligence.hybrid_explain import explain_verified_workspace
+from ..intelligence.ai_usage import usage_snapshot
 from ..intelligence.profiles import profile_for_request
 from ..intelligence.retrieval import SearchResponse, search
 from ..intelligence.workspace import compose_workspace
@@ -101,6 +104,14 @@ def workspace(request: IntentRequest, response: Response, user: Identity = Depen
     plan = compose_workspace(data, knowledge(), result, request_text=request.input)
     compose_ms = (perf_counter() - planning) * 1000
     plan.context_token = contexts.put(result, user)
+    groq_started = perf_counter()
+    # Pass 12D: operational requests are FREE-first, verified and zero Groq calls.
+    # Legacy ranking is an explicit opt-in for comparisons only.
+    import os
+    if os.getenv('KAIROS_GROQ_RANK_OPERATIONS', 'false').strip().lower() in ('true','1','yes'):
+        plan = groq_enrich_with_deadline(request.input, plan)
+    groq_ms = (perf_counter() - groq_started) * 1000
+    response.headers['X-KAIROS-AI'] = plan.intelligence.status
     # Only timing numbers. No prompts, identities, JWTs or SQL content leak.
     metrics = getattr(data, 'timings', {})
     cache_state = getattr(data, 'cache_state', 'BYPASS')
@@ -111,6 +122,27 @@ def workspace(request: IntentRequest, response: Response, user: Identity = Depen
         f'snapshot;dur={data.load_ms:.1f}, cache;desc="{cache_state}";dur={metrics.get("cache_ms", 0.0):.1f}, '
         + ''.join(f'{key};dur={metrics[key]:.1f}, ' for key in (
             'db_pool_ms', 'db_setup_ms', 'db_sql_ms', 'db_fetch_ms', 'db_decode_ms') if key in metrics)
-        + f'intent;dur={intent_ms:.1f}, compose;dur={compose_ms:.1f}'
+        + f'intent;dur={intent_ms:.1f}, compose;dur={compose_ms:.1f}, groq;dur={groq_ms:.1f}'
     )
     return plan
+
+
+@router.post('/workspace/explain')
+def workspace_explain(request: IntentRequest, response: Response,
+                      user: Identity = Depends(current_user), data: Snapshot = Depends(plan_snapshot)):
+    """Separate on-demand AI explanation, never blocks /workspace/plan.
+
+    The caller supplies ONLY a question; all facts are refetched under a verified
+    employee identity and existing PostgreSQL RLS/claims-based authorization.
+    """
+    response.headers['Cache-Control'] = 'private, no-store'
+    resolved = resolve_intent(request, data, user, contexts.get(request.context_token, user))
+    plan = compose_workspace(data, knowledge(), resolved, request_text=request.input)
+    return explain_verified_workspace(request.input, plan, viewer=f'{user.id}:{user.employee_id}:{user.access_role}')
+
+
+@router.get('/ai/usage')
+def ai_usage(response: Response, user: Identity = Depends(current_user)):
+    """Aggregate request counts and token usage for this process only."""
+    response.headers['Cache-Control'] = 'private, no-store'
+    return usage_snapshot(viewer=f'{user.id}:{user.employee_id}:{user.access_role}')
