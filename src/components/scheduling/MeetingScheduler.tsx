@@ -1,8 +1,10 @@
 /** SORYU meeting creation. No synthetic employee lists or client data. */
 import { useEffect, useMemo, useState } from 'react';
-import { ArrowLeft, CalendarPlus, CheckCircle2, Clock, Loader2, Search, ShieldCheck, Users, X } from 'lucide-react';
+import { ArrowLeft, BrainCircuit, CalendarPlus, CheckCircle2, Clock, Loader2, Search, ShieldCheck, Users, X } from 'lucide-react';
 import { apiRequest } from '../../lib/api';
 import './meeting-scheduler.css';
+import { ReflexComparison } from './ReflexComparison';
+import type { ReflexResult } from './ReflexComparison';
 
 type Employee = {id:string; full_name:string; department_id:string; department:string; job_title:string};
 type Client = {id:string; name:string};
@@ -53,6 +55,9 @@ export function MeetingScheduler({onClose,onCreated}:{onClose:()=>void;onCreated
   const [requestId,setRequestId]=useState(newRequestId);
   const [proposal,setProposal]=useState<Proposal|null>(null);
   const [preview,setPreview]=useState<Preview|null>(null);
+  const [reflex,setReflex]=useState<{key:string;data:ReflexResult}|null>(null);
+  const [reflexBusy,setReflexBusy]=useState(false);
+  const [reflexError,setReflexError]=useState('');
   const [created,setCreated]=useState<Booking|null>(null);
   useEffect(()=>{
     let active=true;
@@ -79,6 +84,24 @@ export function MeetingScheduler({onClose,onCreated}:{onClose:()=>void;onCreated
       setProposal(next);setPreview(res);setStep('review');
     }catch(e){setError(e instanceof Error?e.message:'Unable to preview the meeting.');}
     finally{setLoading(false);}
+  }
+  const reflexKey=JSON.stringify([title,clientId,projectId,purpose,startLocal,duration,[...attendees].sort()]);
+  async function compareWithReflex(){
+    if(!options||reflexBusy||loading)return;
+    setReflexError('');setReflex(null);setReflexBusy(true);
+    try {
+      const next=makeProposal({title,clientId,projectId,purpose,startLocal,duration,attendees,requestId});
+      const result=await apiRequest<ReflexResult>('/api/intelligence/scheduling/reflex/compare',
+        {method:'POST',body:JSON.stringify(next)});
+      setReflex({key:reflexKey,data:result});
+    }catch(e){setReflexError(e instanceof Error?e.message:'Comparison unavailable. No meeting changed.');}
+    finally{setReflexBusy(false);}
+  }
+  function useReflexSlot(iso:string){
+    // Input is always a server-returned timestamp. Convert to the app's IST form.
+    const date=new Date(new Date(iso).getTime()+330*60_000);
+    setStartLocal(date.toISOString().slice(0,16));
+    setReflex(null);setReflexError('');setPreview(null);setProposal(null);
   }
   async function handleConfirm(){
     if(!proposal||!preview?.can_create||loading)return;
@@ -111,6 +134,11 @@ export function MeetingScheduler({onClose,onCreated}:{onClose:()=>void;onCreated
         <div className="ks-organizer"><ShieldCheck size={16}/><span>{organizer?.full_name||'Signed-in employee'} — Organizer</span><small>{organizer?.department}</small></div>
         <label className="ks-search"><Search size={16}/><input aria-label="Filter employees" placeholder="Find people by name or department" value={search} onChange={e=>setSearch(e.target.value)}/></label>
         <div className="ks-list">{filtered.filter(e=>e.id!==options?.current_employee_id).map(e=><label key={e.id} className="ks-person"><input type="checkbox" disabled={!attendees.includes(e.id)&&chosen.length>=11} checked={attendees.includes(e.id)} onChange={()=>toggle(e.id)}/><span>{e.full_name}<small>{e.department} · {e.job_title}</small></span></label>)}</div>
+        <button type="button" className="kr-trigger" disabled={buttonDisabled||reflexBusy||!options||!title.trim()||!clientId} onClick={()=>void compareWithReflex()}>
+          <BrainCircuit size={17}/> {reflexBusy?'Comparing authorized records…':'KAIROS Reflex · Compare 3 options'}
+        </button>
+        {reflexError&&<p className="ks-error" role="alert">{reflexError}</p>}
+        {reflex?.key===reflexKey&&<ReflexComparison data={reflex.data} onChoose={useReflexSlot}/>}
         <div className="ks-footer"><p>Review does not create or reserve a meeting.</p><button type="submit" className="ks-primary" disabled={buttonDisabled||!options}>{loading?<><Loader2 size={16}/> Checking…</>:'Review meeting →'}</button></div>
       </form>}
       {step==='review'&&preview&&proposal&&<div className="ks-content ks-review">
