@@ -1,0 +1,140 @@
+.kairos-gate-overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 9999;
+  overflow: hidden;
+  pointer-events: none;
+  opacity: 1;
+  animation: kairosOverlayFadeOut 0.4s ease forwards;
+  animation-delay: 1.8s;
+  background: transparent;
+}
+
+.kairos-main-image-opening {
+  position: absolute;
+  inset: 0;
+  overflow: hidden;
+  perspective: 1800px;
+  perspective-origin: center center;
+  transform-style: preserve-3d;
+}
+
+/* both halves of the SAME full image */
+.kairos-image-panel {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  width: 50%;
+  background-image: url("/images/kairos-gate-wide.png");
+  background-size: 200% 100%;
+  background-repeat: no-repeat;
+  will-change: transform, opacity, filter;
+  backface-visibility: hidden;
+  box-shadow:
+    inset 0 0 30px rgba(0, 0, 0, 0.12),
+    0 0 20px rgba(0, 0, 0, 0.08);
+}
+
+/* left half */
+.kairos-image-panel-left {
+  left: 0;
+  background-position: left center;
+  transform-origin: left center;
+  border-right: 1px solid rgba(255, 236, 236, 0.28);
+  animation: kairosPanelLeftOpen 1.25s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+  animation-delay: 0.35s;
+}
+
+/* right half */
+.kairos-image-panel-right {
+  right: 0;
+  background-position: right center;
+  transform-origin: right center;
+  border-left: 1px solid rgba(255, 236, 236, 0.28);
+  animation: kairosPanelRightOpen 1.25s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+  animation-delay: 0.35s;
+}
+
+/* center light seam before opening */
+.kairos-image-seam-glow {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 50%;
+  width: 2px;
+  transform: translateX(-50%);
+  background: linear-gradient(
+    to bottom,
+    rgba(255, 255, 255, 0),
+    rgba(255, 240, 240, 0.95),
+    rgba(255, 255, 255, 0)
+  );
+  box-shadow: 0 0 18px rgba(255, 220, 220, 0.6);
+  opacity: 0;
+  animation: kairosSeamGlow 0.75s ease forwards;
+  animation-delay: 0.2s;
+}
+
+/* smoother, slightly premium opening */
+@keyframes kairosPanelLeftOpen {
+  0% {
+    transform: translateX(0) rotateY(0deg);
+    filter: brightness(1);
+  }
+  40% {
+    transform: translateX(-6%) rotateY(-10deg);
+    filter: brightness(0.97);
+  }
+  100% {
+    transform: translateX(-100%) rotateY(-18deg);
+    filter: brightness(0.9);
+  }
+}
+
+@keyframes kairosPanelRightOpen {
+  0% {
+    transform: translateX(0) rotateY(0deg);
+    filter: brightness(1);
+  }
+  40% {
+    transform: translateX(6%) rotateY(10deg);
+    filter: brightness(0.97);
+  }
+  100% {
+    transform: translateX(100%) rotateY(18deg);
+    filter: brightness(0.9);
+  }
+}
+
+@keyframes kairosSeamGlow {
+  0% {
+    opacity: 0;
+  }
+  35% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0;
+  }
+}
+
+@keyframes kairosOverlayFadeOut {
+  from {
+    opacity: 1;
+  }
+  to {
+    opacity: 0;
+    visibility: hidden;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .kairos-gate-overlay,
+  .kairos-image-panel-left,
+  .kairos-image-panel-right,
+  .kairos-image-seam-glow {
+    animation-duration: 0.01ms !important;
+    animation-delay: 0ms !important;
+    animation-iteration-count: 1 !important;
+  }
+}

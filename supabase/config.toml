@@ -1,0 +1,5 @@
+project_id = "kairos"
+
+[functions.plan-workspace]
+# The function validates bearer tokens with auth.getUser, including publishable-key projects.
+verify_jwt = false

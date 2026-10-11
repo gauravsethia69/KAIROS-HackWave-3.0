@@ -1,0 +1,134 @@
+[
+  {
+    "type": "ClientProfile",
+    "selector": "clients",
+    "title": "Client at a glance",
+    "weights": {
+      "overview": 0,
+      "meeting": 9,
+      "usage": 3,
+      "projects": 0
+    },
+    "reason": "Contact, account owner and account health establish the client context."
+  },
+  {
+    "type": "MeetingBrief",
+    "selector": "meetings",
+    "title": "Your meeting brief",
+    "weights": {
+      "overview": 0,
+      "meeting": 10,
+      "usage": 0,
+      "projects": 0
+    },
+    "reason": "The upcoming meeting sets the agenda, attendees and decisions to prepare."
+  },
+  {
+    "type": "UsageChart",
+    "selector": "usage",
+    "title": "Product adoption",
+    "weights": {
+      "overview": 0,
+      "meeting": 3,
+      "usage": 10,
+      "projects": 0
+    },
+    "reason": "Daily active users show the timing and magnitude of adoption changes."
+  },
+  {
+    "type": "MetricCards",
+    "selector": "usage",
+    "title": "Usage signals",
+    "weights": {
+      "overview": 0,
+      "meeting": 0,
+      "usage": 9,
+      "projects": 0
+    },
+    "reason": "Active users, sessions and errors quantify the selected period."
+  },
+  {
+    "type": "ActivityTimeline",
+    "selector": "communications",
+    "title": "Recent communication",
+    "weights": {
+      "overview": 3,
+      "meeting": 8,
+      "usage": 0,
+      "projects": 0
+    },
+    "reason": "Client and support messages provide first-hand context."
+  },
+  {
+    "type": "ActivityTimeline",
+    "selector": "meetings",
+    "title": "Previous meeting records",
+    "weights": {
+      "overview": 0,
+      "meeting": 7,
+      "usage": 0,
+      "projects": 0
+    },
+    "reason": "Earlier commitments help you follow through during the next conversation."
+  },
+  {
+    "type": "ActivityTimeline",
+    "selector": "activity",
+    "title": "Relevant timeline",
+    "weights": {
+      "overview": 0,
+      "meeting": 0,
+      "usage": 7,
+      "projects": 5
+    },
+    "reason": "Dated issues and communications help connect events without assuming causation."
+  },
+  {
+    "type": "TaskList",
+    "selector": "tasks",
+    "title": "Priority actions",
+    "weights": {
+      "overview": 7,
+      "meeting": 5,
+      "usage": 4,
+      "projects": 9
+    },
+    "reason": "Open tasks identify concrete next steps, owners and due dates."
+  },
+  {
+    "type": "ProjectProgress",
+    "selector": "projects",
+    "title": "Projects behind schedule",
+    "weights": {
+      "overview": 8,
+      "meeting": 0,
+      "usage": 0,
+      "projects": 10
+    },
+    "reason": "Actual progress below expected progress identifies delivery gaps."
+  },
+  {
+    "type": "IssuePanel",
+    "selector": "issues",
+    "title": "Issues & blockers",
+    "weights": {
+      "overview": 0,
+      "meeting": 6,
+      "usage": 8,
+      "projects": 8
+    },
+    "reason": "Tracked issues surface unresolved risks and accountable owners."
+  },
+  {
+    "type": "InsightPanel",
+    "selector": "insights",
+    "title": "Evidence & talking points",
+    "weights": {
+      "overview": 0,
+      "meeting": 6,
+      "usage": 8,
+      "projects": 6
+    },
+    "reason": "Source-linked observations and separate hypotheses guide the next action."
+  }
+]

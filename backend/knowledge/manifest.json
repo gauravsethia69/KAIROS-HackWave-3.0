@@ -1,0 +1,101 @@
+{
+  "version": 1,
+  "documents": [
+    {
+      "id": "soryu-overview",
+      "path": "company/soryu-overview.md"
+    },
+    {
+      "id": "organization-reporting",
+      "path": "company/organization-reporting.md"
+    },
+    {
+      "id": "ownership-conventions",
+      "path": "company/ownership-conventions.md"
+    },
+    {
+      "id": "collaboration-model",
+      "path": "company/collaboration-model.md"
+    },
+    {
+      "id": "evidence-terminology",
+      "path": "company/evidence-terminology.md"
+    },
+    {
+      "id": "department-engineering",
+      "path": "departments/department-engineering.md"
+    },
+    {
+      "id": "department-customer-success",
+      "path": "departments/department-customer-success.md"
+    },
+    {
+      "id": "department-product",
+      "path": "departments/department-product.md"
+    },
+    {
+      "id": "department-sales",
+      "path": "departments/department-sales.md"
+    },
+    {
+      "id": "department-support",
+      "path": "departments/department-support.md"
+    },
+    {
+      "id": "department-operations",
+      "path": "departments/department-operations.md"
+    },
+    {
+      "id": "department-data-analytics",
+      "path": "departments/department-data-analytics.md"
+    },
+    {
+      "id": "product-cloudops",
+      "path": "products/product-cloudops.md"
+    },
+    {
+      "id": "product-insight",
+      "path": "products/product-insight.md"
+    },
+    {
+      "id": "product-flow",
+      "path": "products/product-flow.md"
+    },
+    {
+      "id": "product-guard",
+      "path": "products/product-guard.md"
+    },
+    {
+      "id": "playbook-client-meeting-prep",
+      "path": "playbooks/playbook-client-meeting-prep.md"
+    },
+    {
+      "id": "playbook-usage-decline",
+      "path": "playbooks/playbook-usage-decline.md"
+    },
+    {
+      "id": "playbook-delayed-project",
+      "path": "playbooks/playbook-delayed-project.md"
+    },
+    {
+      "id": "playbook-support-triage",
+      "path": "playbooks/playbook-support-triage.md"
+    },
+    {
+      "id": "playbook-team-workload",
+      "path": "playbooks/playbook-team-workload.md"
+    },
+    {
+      "id": "playbook-executive-briefing",
+      "path": "playbooks/playbook-executive-briefing.md"
+    },
+    {
+      "id": "playbook-blocker-escalation",
+      "path": "playbooks/playbook-blocker-escalation.md"
+    },
+    {
+      "id": "playbook-ownership-handoff",
+      "path": "playbooks/playbook-ownership-handoff.md"
+    }
+  ]
+}

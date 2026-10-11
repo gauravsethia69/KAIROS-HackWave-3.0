@@ -1,0 +1,7 @@
+/* Pass 6 answer summary styles. Existing EnterpriseEvidence remains untouched. */
+.enterprise-summary{grid-template-columns:repeat(auto-fit,minmax(min(330px,100%),1fr))}
+.enterprise-action-strip{border:1px solid #745567;background:#29252e;border-radius:10px;padding:13px 15px;margin-top:11px}
+.enterprise-action-strip>strong{display:block;font-size:11px;letter-spacing:.06em;color:#f1c9b5;text-transform:uppercase}
+.enterprise-action-strip p{font-size:12px;line-height:1.65;color:#f3e5e7;margin:7px 0}
+.enterprise-more-findings{margin-top:13px}.enterprise-more-findings>summary{cursor:pointer;color:#b5cbdb;font-size:12px;display:flex;gap:8px;align-items:center;padding:10px 0}
+.enterprise-more-findings[open] .enterprise-claims{margin-top:7px}.enterprise-detail-hint{font-size:11px;color:#9ab7c9}.enterprise-more-sources{white-space:nowrap}

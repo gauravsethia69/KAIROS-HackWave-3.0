@@ -1,0 +1,151 @@
+/* Complete KAIROS landing stylesheet. Expects /public/images/kairos-japan-hero.webp (2048x768). */
+/* KAIROS employee gateway. Scoped styles deliberately leave the existing dark
+   authenticated workspace untouched. */
+.kairos-landing {
+  min-height: 100vh;
+  color: #30282d;
+  background: #fffaf8;
+  font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Noto Sans JP', 'Yu Gothic', sans-serif;
+  color-scheme: light;
+}
+.kairos-landing button {color:inherit}
+.kairos-landing .landing-surface {overflow:hidden;background:#fffbfa}
+.kairos-landing .landing-header {
+  height: 84px; display:flex;align-items:center;gap:20px;justify-content:space-between;
+  padding: 0 clamp(24px,5vw,88px); position:relative; z-index:10;
+  background: #fffbfaf5; border-bottom:1px solid #70464f0c;
+}
+.landing-brand {display:flex;gap:11px;align-items:center;min-width:195px}
+.landing-logo {width:49px;height:49px;border-radius:50%;display:grid;place-items:center;background:#f8d4da;position:relative;overflow:hidden}
+.landing-gate {width:27px;height:28px;display:block;border-left:5px solid #3a2932;border-right:5px solid #3a2932;transform:perspective(30px) rotateX(4deg);position:relative;top:3px}
+.landing-gate:before {content:"";position:absolute;left:-10px;top:-5px;width:36px;height:6px;background:#3a2932;border-radius:3px;transform:skewY(-3deg)}
+.landing-gate:after {content:"";position:absolute;left:-7px;top:5px;width:29px;height:4px;background:#3a2932;border-radius:2px}
+.landing-brand-names {display:flex;flex-direction:column;line-height:1;gap:4px}
+.landing-brand-names strong {font-size:24px;letter-spacing:.04em;font-weight:800;color:#2b2629}
+.landing-brand-names small {font-size:9px;letter-spacing:.43em;color:#61555b;margin-left:2px}
+.landing-desktop-nav {display:flex;align-items:center;justify-content:center;gap:clamp(1px,.5vw,12px);flex:1}
+.landing-nav-item {border:0;background:transparent;padding:11px 12px;display:inline-flex;align-items:center;gap:9px;border-radius:10px;font-size:12px;color:#464348!important;white-space:nowrap}
+.landing-nav-item.current {color:#a62949!important;background:#fbeaed}
+.landing-nav-item:hover {background:#fbf0f1}
+.landing-header-actions {display:flex;align-items:center;gap:12px}
+.landing-search {border:1px solid #eee4e4;background:#fff8f7;display:grid;place-items:center;width:38px;height:38px;border-radius:50%}
+.landing-signin-link {background:#aa2a48!important;color:#fff!important;border:0;border-radius:12px;padding:12px 16px;display:flex;align-items:center;gap:8px;font-weight:650;font-size:12px;white-space:nowrap;box-shadow:0 5px 15px #aa2a4824}
+.landing-mobile-menu-btn {display:none;border:1px solid #efe1e3;background:#fff8f7;border-radius:9px;padding:9px}
+.landing-mobile-menu {display:none}
+.landing-hero {min-height:588px;position:relative;isolation:isolate;overflow:hidden;background:linear-gradient(108deg,#fff8f7 0%,#fff8f8 38%,#fff1f0 72%,#f8d2d4 100%);}
+.landing-hero:before {content:"";position:absolute;inset:0;z-index:-1;opacity:.42;background-image:radial-gradient(#9e68751c .55px,transparent .55px);background-size:7px 7px;pointer-events:none}
+/* Soft left-side overlay protects headline contrast without blurring the image. */
+.landing-hero-wash {
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  pointer-events: none;
+  background: linear-gradient(90deg,
+    #fff9f8 0%,
+    #fff9f8f5 25%,
+    #fff9f8c7 44%,
+    #fff9f84d 63%,
+    transparent 83%
+  );
+}
+/* The high-resolution 2048x768 panorama spans the entire hero.
+   KAI is drawn smaller in the artwork itself; do not shrink the whole image. */
+.landing-art {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  z-index: -2;
+  overflow: hidden;
+  pointer-events: none;
+  opacity: 1;
+  -webkit-mask-image: none;
+  mask-image: none;
+}
+.landing-art img {
+  display: block;
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center center;
+  image-rendering: auto;
+  filter: saturate(1.04) contrast(1.02);
+}
+.landing-hero-content {position:relative;z-index:1;max-width:680px;margin-left:clamp(30px,7.2vw,120px);padding:66px 0 125px;width:min(52%,680px)}
+.landing-kicker {font-size:11px;letter-spacing:.33em;color:#ac3752;font-weight:800;margin-bottom:17px;line-height:1.6}
+.landing-product-title {font-size:clamp(60px,7.5vw,106px);font-weight:900;letter-spacing:-.045em;line-height:1.08;color:#ad2d4d;text-shadow:0 5px 24px #f3a2b13d;white-space:nowrap;margin-bottom:4px}
+.landing-flower {display:inline-block;color:#efa1b6;font-size:.65em;vertical-align:17%;margin-left:6px;transform:rotate(-10deg);text-shadow:none}
+.landing-hero-content h1 {font-size:clamp(31px,3.05vw,52px);letter-spacing:-.065em;line-height:1.13;font-weight:760;color:#3c2731;max-width:625px}
+.landing-description {color:#756d73;font-size:clamp(13px,1.15vw,16px);line-height:1.65;max-width:475px;margin-top:19px}
+.landing-intent {margin-top:34px;width:min(610px,94%);min-height:61px;border:1px solid #eed4dd;display:flex;align-items:center;gap:12px;background:#fffdfdf5;border-radius:50px;padding:7px 8px 7px 20px;box-shadow:0 12px 36px #c7607930}
+.landing-intent>svg {color:#ab3153;flex-shrink:0}
+.landing-intent input {min-width:0;flex:1;border:0;background:transparent;color:#402e38!important;outline:0!important;font-size:14px;padding:8px 0}
+.landing-intent input::placeholder {color:#a0a0a8;opacity:1}
+.landing-intent:focus-within {border-color:#bd6681;box-shadow:0 0 0 3px #edb1c046,0 14px 35px #c7607930}
+.landing-intent button {width:45px;height:45px;display:grid;place-items:center;flex-shrink:0;border:0;border-radius:50%;background:#ae2e4e;color:#fff!important;box-shadow:0 3px 12px #8d20434b}
+.landing-prompt-chips {display:flex;flex-wrap:wrap;gap:10px;margin:15px 0 0 12px;max-width:640px}
+.landing-prompt-chips button {border:1px solid #efe2e4;background:#fffafaf0;color:#726871;font-size:11px;white-space:nowrap;border-radius:99px;padding:10px 14px;box-shadow:0 5px 15px #8442520d}
+.landing-prompt-chips button:hover {background:#fff;border-color:#e7bac6;color:#9f2f4c}
+.landing-bottom-note {position:absolute;bottom:20px;left:clamp(30px,7.2vw,120px);font-size:9px;letter-spacing:.17em;color:#b07b89;display:flex;align-items:center;gap:10px}
+.landing-note-line{height:2px;width:22px;background:#a33351}
+.landing-petal {position:absolute;background:#df768d;opacity:.6;border-radius:75% 0 75% 0;transform:rotate(37deg);width:12px;height:7px;pointer-events:none}
+.petal-a {top:17%;left:49%;transform:rotate(51deg)} .petal-b{top:36%;left:54%;transform:rotate(-21deg);width:9px;height:16px}.petal-c{top:25%;left:62%;transform:rotate(51deg)}.petal-d{top:59%;left:40%;transform:rotate(19deg)}.petal-e{top:73%;left:51%;transform:rotate(68deg);width:14px;height:8px}.petal-f{top:82%;left:70%;transform:rotate(-8deg)}
+.landing-value-section {max-width:1340px;margin:0 auto;padding:75px clamp(30px,7vw,105px) 85px;background:#fffbfa}
+.landing-value-intro>span {font-size:10px;letter-spacing:.22em;font-weight:760;color:#a52f4b}
+.landing-value-intro h2 {font-size:clamp(25px,2.4vw,38px);font-weight:700;letter-spacing:-.04em;line-height:1.15;color:#33252b;margin:12px 0 32px}
+.landing-value-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:18px}
+.landing-value-grid article {padding:28px;border-radius:19px;border:1px solid #f2e1e4;background:linear-gradient(145deg,#fffefe,#fff6f6);box-shadow:0 12px 30px #b27d8520}
+.landing-value-icon{width:43px;height:43px;display:grid;place-items:center;color:#ad3452;background:#fae5e9;border-radius:12px;margin-bottom:20px}
+.landing-value-grid h3{font-size:16px;color:#352b30;font-weight:720;margin-bottom:10px}
+.landing-value-grid p{font-size:13px;color:#786f75;line-height:1.65}
+.landing-footer {border-top:1px solid #ecdfe1;background:#fff8f7;padding:25px clamp(28px,7vw,105px);display:flex;align-items:center;justify-content:space-between;gap:20px;color:#8b7780;font-size:12px}
+.landing-footer>span:first-child {font-weight:800;letter-spacing:.09em;color:#992c49}.landing-footer>span:first-child span{font-weight:400;margin-left:7px}
+.landing-footer>button {background:transparent;border:0;display:flex;align-items:center;gap:7px;color:#9b2c4a;font-weight:650}
+.landing-sr-only {border:0;clip:rect(0 0 0 0);height:1px;margin:-1px;overflow:hidden;padding:0;position:absolute;width:1px;white-space:nowrap}
+.landing-login-backdrop {position:fixed;inset:0;z-index:999;display:grid;place-items:center;padding:20px;background:#1d1922a8;backdrop-filter:blur(7px);color:#342c32}
+.landing-login-dialog {position:relative;width:min(445px,100%);padding:39px 38px 27px;border-radius:22px;background:#fffaf9;box-shadow:0 28px 100px #2517228f;border:1px solid #fff}
+.landing-login-close {position:absolute;right:19px;top:19px;width:34px;height:34px;border:1px solid #eddddd;border-radius:9px;display:grid;place-items:center;background:#fff6f6;color:#87757c}
+.landing-login-mark {height:48px;width:48px;border-radius:14px;display:grid;place-items:center;background:#f9dce3;color:#a93150;margin-bottom:24px}
+.landing-login-overline {font-size:10px;letter-spacing:.19em;font-weight:800;color:#b64a63;line-height:1.6}
+.landing-login-dialog h2 {font-size:30px;font-weight:750;letter-spacing:-.045em;line-height:1.2;margin-top:8px}
+.landing-login-dialog>p:not(.landing-login-overline) {font-size:13px;color:#867881;margin:12px 0 27px;line-height:1.65}
+.landing-login-dialog form {display:flex;flex-direction:column;gap:11px}
+.landing-login-dialog label {font-size:12px;font-weight:650;color:#54434d;margin-top:4px}
+.landing-login-dialog input {background:#fff;color:#372b33;border:1px solid #e5cbd2;border-radius:11px;padding:13px 15px;width:100%;font-size:14px;outline-color:#b54761}
+.landing-login-dialog input::placeholder{color:#aba0a5}
+.landing-password-wrap{position:relative}
+.landing-password-wrap input{padding-right:45px}
+.landing-password-wrap button {position:absolute;right:6px;top:6px;width:34px;height:34px;background:transparent;border:0;color:#87757d;display:grid;place-items:center}
+.landing-login-submit {margin-top:15px;background:#ad2b4c;border:0;border-radius:11px;padding:15px;color:#fff!important;display:flex;align-items:center;justify-content:center;gap:9px;font-weight:710;font-size:14px}
+.landing-login-error,.landing-login-warning {padding:12px 13px;border-radius:10px;background:#fff0ee;border:1px solid #e5aaa9;color:#94394a;font-size:12px;line-height:1.6}
+.landing-login-foot {border-top:1px solid #f1e4e7;padding-top:19px;margin-top:27px;display:flex;justify-content:center;align-items:center;gap:7px;font-size:11px;color:#9e8c94}
+.landing-auth-loading {min-height:100vh;background:#fff6f5;display:flex;align-items:center;justify-content:center;flex-direction:column;color:#992a47;gap:15px}
+.landing-auth-loading>span {font-size:50px;font-weight:800;letter-spacing:.1em}.landing-auth-loading p{color:#8d7c81;font-size:14px}
+.kairos-landing :is(button,a,input):focus-visible {outline:3px solid #c76a84;outline-offset:3px}
+@media(max-width:1120px) {
+  .kairos-landing .landing-header {padding:0 30px}.landing-brand{min-width:158px}.landing-brand-names strong{font-size:21px}.landing-nav-item{padding:9px 7px;gap:5px;font-size:11px}.landing-signin-link{padding:11px 12px}.landing-hero-content {margin-left:45px;width:54%;padding-top:65px}.landing-hero-content h1{font-size:40px}.landing-product-title{font-size:80px}.landing-bottom-note{left:45px}
+}
+@media(max-width:850px) {
+  .landing-desktop-nav,.landing-search {display:none}.landing-mobile-menu-btn{display:grid;place-items:center}.landing-header-actions{margin-left:auto}.landing-mobile-menu{display:flex;flex-direction:column;padding:12px 24px 18px;background:#fffafa;box-shadow:0 12px 15px #672d3925;position:absolute;left:0;right:0;z-index:30}.landing-mobile-menu button{background:transparent;border:0;display:flex;align-items:center;gap:12px;padding:12px 6px;text-align:left;color:#533943!important}
+  .landing-hero{min-height:625px}.landing-hero-content{width:68%;padding-top:70px}.landing-art img{object-position:77% center}.landing-hero-wash{background:linear-gradient(90deg,#fff9f8 0%,#fff9f8eb 35%,#fff9f8b6 62%,#fff9f82e 100%)}.landing-hero-content h1{font-size:37px}
+}
+@media(max-width:610px) {
+  .kairos-landing .landing-header{height:69px;padding:0 19px}.landing-logo{width:43px;height:43px}.landing-brand{min-width:unset}.landing-brand-names strong{font-size:20px}.landing-signin-link{font-size:0;gap:0;width:40px;height:40px;display:grid;place-items:center;padding:0}.landing-signin-link svg:last-child{display:none}.landing-signin-link svg:first-child{width:19px;height:19px}.landing-mobile-menu-btn{width:40px;height:40px}.landing-hero{min-height:730px}.landing-hero-content{padding:53px 0 275px;margin:0 auto;width:calc(100% - 40px);max-width:500px}.landing-kicker{font-size:9px;letter-spacing:.18em;margin-bottom:14px}.landing-product-title{font-size:clamp(52px,14vw,82px)}.landing-hero-content h1{font-size:clamp(29px,8.2vw,41px);max-width:460px}.landing-description{font-size:13px;max-width:400px}.landing-art{
+    top:auto;
+    bottom:0;
+    left:0;
+    right:0;
+    width:100%;
+    height:320px;
+    opacity:1;
+    -webkit-mask-image:linear-gradient(to bottom,transparent 0%,#000 28%,#000 100%);
+    mask-image:linear-gradient(to bottom,transparent 0%,#000 28%,#000 100%);
+  }
+  .landing-art img{
+    object-fit:cover;
+    object-position:78% center;
+  }.landing-hero-wash{background:linear-gradient(180deg,#fffaf8 0%,#fffaf8 43%,#fffaf833 64%,transparent 100%)}.landing-intent{min-height:55px;margin-top:24px;width:100%;padding-left:15px}.landing-intent input{font-size:13px}.landing-intent button{width:41px;height:41px}.landing-prompt-chips{gap:8px;margin:12px 0 0}.landing-prompt-chips button{font-size:10px;padding:9px 11px}.landing-bottom-note{bottom:10px;left:20px;font-size:7px;color:#a25566;background:#fff9f8b5;padding:6px}.landing-value-section{padding:49px 22px 55px}.landing-value-grid{grid-template-columns:1fr}.landing-value-grid article{padding:24px}.landing-footer{padding:25px 22px;flex-wrap:wrap;gap:12px}.landing-footer>span:nth-child(2){display:none}.landing-login-dialog{padding:31px 23px 25px}
+}
+@media(prefers-reduced-motion:reduce) {.kairos-landing *{transition:none!important;animation:none!important;scroll-behavior:auto!important}}
