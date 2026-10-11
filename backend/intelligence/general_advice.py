@@ -18,33 +18,52 @@ from .groq_focus import GROQ_ENDPOINT, GROQ_DEFAULT_MODEL, _budget_allows, _para
 
 _LOG = logging.getLogger('kairos.general_advice')
 
-# Precision first: decline ambiguous operational or personal questions, so they
-# stay with the existing authorized enterprise planner, never generic Groq.
+# Precision first: direct database operations still take priority. This
+# implementation mirrors the frontend's conservative, synonym-aware gate.
 _ADVICE_PREFIX = re.compile(
-    r'^(?:how\s+(?:can|could|should|do|would)\s+(?:we|i|our\s+team|a\s+company|businesses)\s+|'
-    r'how\s+to\s+|what\s+can\s+we\s+do\s+to\s+|what\s+strategies\s+(?:can|could)\s+(?:help\s+)?|what\s+are\s+(?:some\s+)?(?:ways|strategies|tips|ideas|best\s+practices)\s+(?:to|for)\s+|'
-    r'(?:give|suggest|recommend)\s+(?:me\s+|us\s+)?(?:some\s+)?(?:ways|strategies|tips|ideas)\s+(?:to|for)\s+|'
-    r'(?:ways|strategies|tips|ideas)\s+(?:to|for)\s+)', re.I)
+    r'^(?:how\s+(?:can|could|should|do|would)\s+(?:(?:we|i|our\s+team|a\s+company|businesses|soryu(?:\s+systems)?)\s+)?|'
+    r'how\s+to\s+|what\s+(?:can|should|could)\s+we\s+do\s+(?:to|about)\s+|'
+    r'what\s+strategies\s+(?:can|could)\s+(?:help\s+)?|'
+    r'what\s+are\s+(?:some\s+)?(?:ways|strategies|tips|ideas|best\s+practices)\s+(?:to|for)\s+|'
+    r'(?:give|suggest|recommend|share)\s+(?:me\s+|us\s+)?(?:some\s+)?(?:ways|strategies|tips|ideas|recommendations)\s+(?:to|for|on)\s+|'
+    r'(?:ways|strategies|tips|ideas|recommendations)\s+(?:to|for|on)\s+|'
+    r'help\s+(?:us|me)\s+(?:to|with)\s+|any\s+(?:ideas|tips|strategies)\s+(?:for|to)\s+|'
+    r'best\s+way\s+to\s+|i\s+need\s+(?:some\s+)?(?:advice|tips|ideas)\s+(?:on|for|to)\s+|'
+    r'(?:can|could)\s+you\s+(?:suggest|recommend|help\s+(?:me|us))\s+)', re.I)
 _ADVICE_TOPICS = re.compile(
-    r'\b(?:sales|selling|revenue|conversion|leads?|marketing|customer\s+(?:retention|satisfaction|engagement|experience|support)|'
-    r'customer\s+service|communication|teamwork|collaboration|productivity|team\s+productivity|'
-    r'meeting\s+(?:quality|effectiveness|efficiency)|meetings|employee\s+(?:engagement|motivation)|'
-    r'business\s+growth|efficiency|onboarding|project\s+management|customer\s+acquisition|'
-    r'brand\s+awareness|support\s+quality|feedback|product\s+adoption)\b', re.I)
+    r'\b(?:sales|selling|sell|revenue|conversion|leads?|marketing|churn|retention|customers?|clients?|'
+    r'customer\s+service|communication|teamwork|collaboration|productivity|efficient|efficiency|meetings?|'
+    r'employee\s+(?:engagement|motivation|morale)|business\s+growth|onboarding|project\s+management|'
+    r'customer\s+acquisition|brand\s+awareness|support\s+quality|feedback|product\s+adoption|'
+    r'enterprise\s+sales|team\s+performance)\b', re.I)
+_IMPROVEMENT = re.compile(
+    r'\b(?:improv\w*|increase|grow|boost|expand|raise|better|reduce|lower|cut|decrease|'
+    r'minimi[sz]e|prevent|retain|attract|engage|convert|win|more|effective|efficient|'
+    r'optimi[sz]e|enhance|strengthen|drive|develop|scale|handle|address|solve)\b', re.I)
 _OPERATIONAL = re.compile(
-    r'\b(?:show|list|find|analy[sz]e|investigate|fetch|query|dashboard|report|compare|chart|graph|'
-    r'actual|recorded|our\s+(?:current|actual|last|previous|historical|specific)|'
-    r'last\s+(?:week|month|quarter|year)|this\s+(?:week|month|quarter)|'
-    r'who\s+(?:owns|is|are)|assigned|schedule|book|create|delete|update|database|'
-    r'\bmy\s+(?:tasks?|projects?|clients?|calendar|schedule|meetings?)|'
-    r'(?:northstar|orbitpay|atlas\s+media|acme|nova\s+studio)\b)\b', re.I)
+    r'\b(?:show|list|find|fetch|query|investigate|review|compare|dashboard|report|chart|graph|'
+    r'analy[sz]e|audit|track|monitor|schedule|book|create|assign|update|delete|cancel|reschedule|move|edit)\b|'
+    r'\b(?:my|our)\s+(?:tasks?|assignments?|calendar|schedule|meetings?|projects?|clients?|manager|'
+    r'department|workload|capacity|actual|recorded|current|last|previous|historical|specific|'
+    r'metrics|numbers|statistics|data)\b|'
+    r'\b(?:who\s+(?:owns|is\s+responsible|handles|is\s+assigned)|what\s+(?:am\s+i\s+assigned|is\s+my\s+team)|'
+    r'which\s+(?:employees?|tasks?|projects?|clients?|team\s+am\s+i)|overdue|overloaded|'
+    r'blocked\s+tasks?|due\s+dates?|live\s+data|database|last\s+(?:week|month|quarter|year)|'
+    r'this\s+(?:week|month|quarter)|next\s+week|yesterday|tomorrow)\b', re.I)
+_NAMED_RECORD = re.compile(r'\b(?:orbitpay|northstar|atlas\s+media|acme\s+corp|nova\s+studio)\b', re.I)
+_ACTION_HELP = re.compile(r'\b(?:how\s+to\s+(?:schedule|book|create|update|find|view))\b', re.I)
 
 
 def is_general_advice(question: str) -> bool:
-    """Only high-confidence broad strategy questions; all other paths unchanged."""
-    q = ' '.join(question.strip().split())
+    """High-confidence general advice only; otherwise leave to authorized DB routing."""
+    q = ' '.join(question.strip().lower().split())
+    q = q.replace('’', "'")
+    q = re.sub(r'\b(?:i\'m|im)\b', 'i am', q)
+    q = re.sub(r"[^a-z0-9&\s'-]", ' ', q).strip()
     return (8 <= len(q) <= 550 and bool(_ADVICE_PREFIX.search(q))
-            and bool(_ADVICE_TOPICS.search(q)) and not _OPERATIONAL.search(q))
+            and bool(_ADVICE_TOPICS.search(q)) and bool(_IMPROVEMENT.search(q))
+            and not _OPERATIONAL.search(q) and not _NAMED_RECORD.search(q)
+            and not _ACTION_HELP.search(q))
 
 
 def _extract_advice(content: str) -> dict:

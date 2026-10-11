@@ -67,11 +67,23 @@ class GuideSummary(BaseModel):
 
 
 def is_onboarding(question: str) -> bool:
-    q = re.sub(r'\s+', ' ', question.lower())
+    """Recognize onboarding *meaning*, not one canonical employee sentence.
+
+    This changes only which Atlas pages are selected, never database/AI access.
+    Operational/personal requests are still routed by the separate frontend gate.
+    """
+    q = re.sub(r"[^a-z0-9&\s'-]", ' ', question.lower().replace('’', "'"))
+    q = re.sub(r"\b(?:i'm|im)\b", 'i am', q)
+    q = re.sub(r'\s+', ' ', q).strip()
     return bool(re.search(
-        r'\b(new (employee|joiner|hire|starter)|just joined|first day|onboard(?:ing)?|'
-        r'getting started|tell me about (?:soryu|the company|our company)|how (?:do|does) (?:things|the company|this company|soryu) work|'
-        r'how (?:the|this|our) (?:company|organization) works|new to (?:soryu|the company))\b', q
+        r'\b(?:new (?:employee|joiner|hire|starter|here|to (?:soryu|the (?:team|company|organization)))|'
+        r'(?:i am|i was) (?:a )?new (?:employee|hire|joiner|starter|here|at (?:soryu|this (?:company|place|organization))|to (?:soryu|the (?:team|company|organization)))|'
+        r'just (?:joined|started|hired|onboarded)|recently joined|first day|onboard(?:ing)?|getting started|'
+        r'how (?:do|does) (?:things?|everything|stuff|the company|this company|soryu) (?:work|operate|run)|'
+        r'how (?:the|this|our) (?:company|organization) works|'
+        r'how does (?:everything|this place|the organization) work|'
+        r'how do i (?:get started|settle in|find my way)|where (?:should|do) i start|'
+        r'help me (?:get oriented|understand how things? work)|starting (?:here|at soryu))\b', q
     ))
 
 
